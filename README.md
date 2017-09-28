@@ -23,7 +23,7 @@ Trata de tipo de ficheros que llamo **ZCONF1** pensados para configuración. Su 
 
 [TAB_ZCONF1]: zdatConfig1Tab/readme.md "Descripción del formato de ficheros ZCONF1"
 [META_ZCONF1]: zdatConfig1TabMeta/readme.md "Descripción del formato de ficheros META_ZCONF1"
-[ZCONF1]: zConf1/readme.md "Fuentes en C para la generación de programas de manejo de ficheros ZCONF1"
+[ZCONF1]: zConfig1/readme.md "Fuentes en C para la generación de programas de manejo de ficheros ZCONF1"
 
 
 
