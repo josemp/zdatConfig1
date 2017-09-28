@@ -1,0 +1,15 @@
+jue ago 24 11:10:07 CEST 2017
+Anado la generaion de ficher de lista nombreList.tab
+anado la lectura de lista
+// PROGRAMA DE LECTURA DE LISTA
+
+// usage:
+//        general_t *generalLista;
+//       numItems = generalLeeLista(nombreFichero,&generalLista);
+generalLeeLista(char *nombreFichero,general_t **generalLista)
+{
+
+
+mié ago 23 20:34:09 CEST 2017
+La generaion de los ficheros, la hago directamente a fichero, y no hacia un buffer
+creo un directorio genera donde pruebo generalMeta.tab

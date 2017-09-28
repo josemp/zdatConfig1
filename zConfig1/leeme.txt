@@ -1,0 +1,52 @@
+
+
+
+
+zTablasConf1
+===========
+
+Sistema zTablasConf1
+------------------
+
+	Consiste un sistema de ficheros de texto que llamo tablas que contiene etiquetas y datos especializadas en configuraciones
+	El fichero tiene lineas separadas por ":" en la que la primera es una etiqueta identificadora.
+	tipo char
+		ejemplo:
+			etiqueta:datoEtiqueta
+	tipo List
+		ejemplo
+			etiqueta:dato1:dato2...
+	tipo Objeto
+		ejemplo etiqueta:dato:dato2...
+
+Proyecto zTablasConf1:  
+---------------------
+
+	Consiste en generar autmaticamente a partir de un fichero meta,  librrias y utilidades para leer estos tipos de registros y pasarlos a estructuras de C
+
+	Fichero meta
+
+	 Es un fichero de texto con el siguiente tipo de lineas
+
+	 Lineas Char
+		etiquetaChar:C:lenChar 
+ 	 Lineas List
+		etiquetaList:L:lenLista:lenChar
+	 Lineas Objeto
+		etiquetaObj:O:nombre1:lenChar1:nombre2:lenChar2:...
+
+	El proyecto zTablasConf1 creaa una estructura por cada linea de objeto
+		typedef struct {
+		 char nombre1[lenChar1+1];
+		 char nombre2[lenChar2+1];
+		} etiquetaObj_t;
+	El proyecto crea una extructura de las lineas 
+		typedef struct {
+		 char etiquetaChar[lenChar]; //tipo char
+		 char etiquetaList[lenLista][lenChar+1]; // tipo list
+		 etiquetaObj_t etiquetaObj; // tipo obj
+		...
+		} protecto_t;
+	El proyecto genera una librria, y una utilidad que permite a partir de un fichero meta, generar los includes y una librria que permita realizar un programa que lea una tabla o una lista en la estructura generada. 
+
+yyy
