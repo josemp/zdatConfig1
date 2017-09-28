@@ -25,5 +25,6 @@ Trata de tipo de ficheros que llamo **ZCONF1** pensados para configuración. Su 
 [META_ZCONF1]: zdatConfig1TabMeta/readme.md "Descripción del formato de ficheros META_ZCONF1"
 [ZCONF1]: zConfig1/README.md "Fuentes en C para la generación de programas de manejo de ficheros ZCONF1"
 
-
+# ¿Que puedes conseguir con este proyecto?
+En construcción, aquí debo escribir un resumen que permita facilmente saber que es lo que realmente se consigue usando este proyecto.
 
