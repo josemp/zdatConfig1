@@ -1,3 +1,9 @@
-motivoSap:C:5
-motivoFedicom:C:5
-
+hostias:L:3:10
+# linea tipo C
+name:C:50
+#linea tipo O
+ped:O:ip:20:puerto:6:timeutConexion:6:timeoutRespuesta:6
+# linea tipo O
+cons:O:ip:20:puerto:6
+# linea tipo L
+reinicio:L:3:7

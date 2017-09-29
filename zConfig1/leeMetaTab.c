@@ -109,8 +109,7 @@ char *resto;
       
       if (len1==0) 
          break;
-     
-      (&metaTab,label,atoi(slen),atoi(slen1));
+     addItemListMetaTab(&metaTab,label,atoi(slen),atoi(slen1));
      break;
      case 'O':
        hayItems=0;
@@ -174,4 +173,3 @@ if (metaTab.numItems>0)
 }
 else return(NULL);
 }
-

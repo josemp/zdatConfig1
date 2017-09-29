@@ -679,7 +679,6 @@ fprintf(ou,"OUTHER_DIR_INCLUDE  :=\n\n");
 
 fprintf(ou,"INCLUDES_FOR_OUTPUT :=\n\n");
 
-fprintf(ou,"OUTPUT_DIR := bin\º\n");
 
 fprintf(ou,"LIBRARY_NAME := lib$(NAME).a\n");
 fprintf(ou,"CFLAGS = $(OUTHER_DIR_INCLUDE)\n");
