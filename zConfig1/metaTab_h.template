@@ -1,0 +1,31 @@
+{{={% %}=}}{%#ignore%}
+   #ignore: esta seccion
+   #tabla : seccion de recorrer toda la tabla
+   #char  : datos de tipo char, solo uno
+   #list  : datos de tipo list, solo uno
+   #object : datos de tipo object, solo uno
+   #itemObjeto : seccion de items de objeto
+   &titulo : titulo de la tabla
+   &name : nombre del elemento
+   &lenChar : longitud de char
+   &lenLista : longitud de la lista
+   &itemObjeto.name : nombre de item objeto
+   &itemObjeto.len : len de item objeto{%/ignore%}
+/******************************************/
+/*  Estructuras de la tabla {%&titulo%}  */ 
+/******************************************/{%#tabla%}{%#object%}
+
+/* Tabla {%&name%} */
+
+typedef struct { {%#itemObjeto%} 
+ char {%&itemObjeto.name%}[{%&itemObjeto.len%}+1];{%/itemObjeto%}
+} {%&name%}_t; {%/object%}{%/tabla%}
+
+/*  Estructura de la tabla {%&titulo%}  */ 
+
+typedef struct {{%#tabla%} {%#char%} 
+ char {%&name%}[{%&lenChar%}+1];{%/char%}{%#list%}
+ char {%&name%}[{%&lenLista%}][{%&lenChar%}+1];{%/list%}{%#object%}
+ {%&name%}_t {%&name%}; {%/object%} {%/tabla%}
+} {%&titulo%}_t;
+
