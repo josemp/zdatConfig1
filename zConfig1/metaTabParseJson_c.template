@@ -1,0 +1,90 @@
+{{={% %}=}}{%#ignore%}
+   #ignore: esta seccion
+   #tabla : seccion de recorrer toda la tabla
+   #char  : datos de tipo char, solo uno
+   #list  : datos de tipo list, solo uno
+   #object : datos de tipo object, solo uno
+   #itemObjeto : seccion de items de objeto
+   &titulo : titulo de la tabla
+   &name : nombre del elemento
+   &lenChar : longitud de char
+   &lenLista : longitud de la lista
+   &itemObjeto.name : nombre de item objeto
+   &itemObjeto.len : len de item objeto{%/ignore%}
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "{%&titulo%}.h"
+#include "cJSON.h"
+
+// Los campos simples de la raiz
+
+parseString(cJSON *item,{%&titulo%}_t *{%&titulo%})
+{ {%#tabla%}{%#char%}
+ if (strcmp(item->string,"{%&name%}")==0)
+       sprintf({%&titulo%}->{%&name%},"%.*s",{%&lenChar%},item->valuestring);
+{%/char%}{%/tabla%}}
+
+// Los campos de objeto
+
+parseItemObjeto(char *padre, cJSON *item,{%&titulo%}_t *{%&titulo%})
+{ {%#tabla%}{%#object%}{%#itemObjeto%}
+ if (   strcmp(padre,"{%&name%}")==0
+    &&  strcmp(item->string,"{%&itemObjeto.name%}")==0)
+       sprintf({%&titulo%}->{%&name%}.{%&itemObjeto.name%},"%.*s",{%&itemObjeto.len%},item->valuestring);
+{%/itemObjeto%}{%/object%}{%/tabla%}}
+
+// Los campos de array
+
+parseItemArray(char *padre, cJSON *item,int contador,{%&titulo%}_t *{%&titulo%})
+{ {%#tabla%}{%#list%}
+ if (    strcmp(padre,"{%&name%}")==0
+     && contador <{%&lenLista%})
+       sprintf({%&titulo%}->{%&name%}[contador],"%.*s",{%&lenChar%},item->valuestring);
+{%/list%}{%/tabla%}}
+
+void parse_object(cJSON *item, char *padre, int tipoPadre,{%&titulo%}_t *{%&titulo%})
+{
+int contArray=0;
+    cJSON *myItem = item;
+    while (1)
+    {
+        // handle subitem
+        if (myItem->child)
+        {
+            parse_object(myItem->child,myItem->string,myItem->type,{%&titulo%});
+        }
+       else
+        {
+          if (padre==NULL || strcmp(padre,"root")==0)
+              parseString(myItem,{%&titulo%});
+          else if (tipoPadre== cJSON_Object)
+              parseItemObjeto(padre,myItem,{%&titulo%});
+          else if (tipoPadre==cJSON_Array)
+            {
+              parseItemArray(padre,myItem,contArray,{%&titulo%});
+              contArray++;
+            }
+        }
+
+        myItem = myItem->next;
+        if (!myItem) break;
+    }
+}
+
+
+{%&titulo%}ParseJson(char *jsonString,{%&titulo%}_t *{%&titulo%})
+{
+
+//int ret=leeFile("prueba.json",&jsonString);
+//if (ret<0) {printf("no pude leer prueba.json\n");return;}
+cJSON * root = cJSON_Parse(jsonString);
+if (root==NULL) {return(-1);}
+parse_object(root, "root", cJSON_Object, {%&titulo%});
+
+free(root);
+
+return(0);
+
+}
+
