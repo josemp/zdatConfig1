@@ -1,0 +1,34 @@
+TITULO  := "Libreria zConfig1"
+NAME    := zlLeeMetaTab
+VERSION := 1.0.0
+
+FUENTES  :=  leeMetaTab.c metaTab.c limpia.c
+INCLUDES :=  metaTab.h
+
+
+OUTHER_DIR_INCLUDE  := 
+
+INCLUDES_FOR_OUTPUT := 
+
+OUTPUT_DIR := bin
+
+LIBRARY_NAME := lib$(NAME).a
+CFLAGS = $(OUTHER_DIR_INCLUDE) 
+OBJETOS      := $(FUENTES:%.c=%.o)
+
+
+# -------- RULES ------------------
+
+
+compila: $(LIBRARY_NAME)
+
+$(OBJETOS):$(FUENTES) $(INCLUDES) 
+
+$(LIBRARY_NAME): $(OBJETOS)
+	- rm -f $(LIBRARY_NAME)
+	ar -rf $@ $^
+
+
+clean:
+	- rm -f $(OBJETOS) $(LIBRARY_NAME) 
+
