@@ -1,9 +1,9 @@
-hostias:L:3:10
+hostias:L:DesHostias:3:10
 # linea tipo C
-name:C:50
+name:C:DescName:50
 #linea tipo O
-ped:O:ip:20:puerto:6:timeutConexion:6:timeoutRespuesta:6
+ped:O:DescPed:ip:DescIp:20:puerto:DescPuerto:6:timeutConexion:DescTimOut Conexion:6:timeoutRespuesta:DesctimeoutRespuesta:6
 # linea tipo O
-cons:O:ip:20:puerto:6
+cons:O:DescConsulta:ip:DescIp:20:puerto:DescPuerto:6
 # linea tipo L
-reinicio:L:3:7
+reinicio:L:Descri:3:7

@@ -6,7 +6,7 @@
 
 
 
-addItemObjeto(itemObjeto_t *objeto,char *label,int len)
+addItemObjeto(itemObjeto_t *objeto,char *label,char *descri,int len)
 {
   int numItem=objeto->numItems;
   if (objeto->numItems==0)
@@ -16,16 +16,18 @@ addItemObjeto(itemObjeto_t *objeto,char *label,int len)
   itemChar_t item;
   strcpy(item.nombre,label);
   item.lenChar=len;
+  strcpy(item.descri,descri);
   objeto->item[numItem]=item;
   objeto->numItems++;
 }
-addItemCharMetaTab(metaTab_t *tabla,char *label,int len)
+addItemCharMetaTab(metaTab_t *tabla,char *label,char *descri,int len)
 {
  metaTabItem_t tabItem;
  tabItem.tipo='C';
  itemChar_t *itemChar;
  itemChar=malloc(sizeof(itemChar_t));
  strcpy(itemChar->nombre,label);
+ strcpy(itemChar->descri,descri);
  itemChar->lenChar=len;
  tabItem.data=itemChar;
  if (tabla->numItems==0)
@@ -37,13 +39,14 @@ addItemCharMetaTab(metaTab_t *tabla,char *label,int len)
  tabla->numItems++;
 
 }
-addItemListMetaTab(metaTab_t *tabla,char *label,int lenLista,int lenChar)
+addItemListMetaTab(metaTab_t *tabla,char *label,char *descri,int lenLista,int lenChar)
 {
  metaTabItem_t tabItem;
  tabItem.tipo='L';
  itemLista_t *itemLista;
  itemLista=malloc(sizeof(itemLista_t));
  strcpy(itemLista->nombre,label);
+ strcpy(itemLista->descri,descri);
  itemLista->lenChar=lenChar;
  itemLista->lenLista=lenLista;
  tabItem.data=itemLista;

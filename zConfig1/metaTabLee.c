@@ -21,6 +21,8 @@ metaTab_t *leeMetaTab(char *file)
  char *label;
  char *label1;
  int len,len1;
+ char *sdescri;
+ char *sdescriI;
  char *slen,*slen1;
  char *tipo;
 char *resto;
@@ -57,13 +59,25 @@ char *resto;
    switch (tipo[0])
       {
      case 'C':
-        len=atoi(resto);
+        sdescri=resto;
+        pun=memchr(resto,':',strlen(resto));
+        if (!pun) break;
+        *pun=0;
+        pun++;
+        slen=pun;
+        len=atoi(slen);
         if (len==0) break;
-        addItemCharMetaTab(&metaTab,label,atoi(resto));
+        addItemCharMetaTab(&metaTab,label,sdescri,atoi(slen));
      break;
      case 'L': 
-      slen=resto;
+      sdescri=resto;
       pun=memchr(resto,':',strlen(resto));
+      if (!pun) break;
+      *pun=0;
+      pun++;
+
+      slen=pun;
+      pun=memchr(slen,':',strlen(resto));
       if (!pun) break;
       *pun=0;
       pun++;
@@ -76,18 +90,33 @@ char *resto;
       
       if (len1==0) 
          break;
-     addItemListMetaTab(&metaTab,label,atoi(slen),atoi(slen1));
+     addItemListMetaTab(&metaTab,label,sdescri,atoi(slen),atoi(slen1));
      break;
      case 'O':
+      sdescri=resto;
+      pun=memchr(resto,':',strlen(resto));
+      if (!pun) break;
+      *pun=0;
+      pun++;
+      resto=pun;
        hayItems=0;
        while(1)
         {
+         
           label1=resto;
           pun=memchr(resto,':',strlen(resto));
           if (!pun) break;
           *pun=0;
           if (strlen(label1)==0) break;
           pun++;
+
+          sdescriI=pun;
+          pun=memchr(sdescriI,':',strlen(sdescriI));
+          if (!pun) break;
+          *pun=0;
+          pun++;
+
+
           slen=pun;
           pun=memchr(slen,':',strlen(slen));
           if (!pun) 
@@ -99,9 +128,10 @@ char *resto;
                      objeto=malloc(sizeof(itemObjeto_t));
                      objeto->numItems=0;
                      strcpy(objeto->nombre,label);
+                     strcpy(objeto->descri,sdescri);
                      hayItems=1;
                    }
-                addItemObjeto(objeto,label1,atoi(slen));
+                addItemObjeto(objeto,label1,sdescriI,atoi(slen));
               }
              break;
            } 
@@ -117,7 +147,7 @@ char *resto;
                      strcpy(objeto->nombre,label);
                hayItems=1;
              }
-                addItemObjeto(objeto,label1,atoi(slen));
+                addItemObjeto(objeto,label1,sdescriI,atoi(slen));
         }
              if(hayItems==1)
               {

@@ -4,17 +4,20 @@
 typedef struct
 {
  char nombre[200+1];
+ char descri[200+1];
  int lenChar;
 } itemChar_t;
 typedef struct
 {
  char nombre[200+1];
+ char descri[200+1];
  int lenLista;
  int lenChar;
 } itemLista_t;
 typedef struct
 {
  char nombre[200+1];
+ char descri[200+1];
  itemChar_t *item;
  int numItems;
 }itemObjeto_t;
@@ -32,9 +35,9 @@ typedef struct
 
 metaTab_t *leeMetaTab(char *file);
 
-int addItemObjeto(itemObjeto_t *objeto,char *label,int len);
-int addItemCharMetaTab(metaTab_t *tabla,char *label,int len);
-int addItemListMetaTab(metaTab_t *tabla,char *label,int lenLista,int lenChar);
+int addItemObjeto(itemObjeto_t *objeto,char *label,char *descri,int len);
+int addItemCharMetaTab(metaTab_t *tabla,char *label,char *descri,int len);
+int addItemListMetaTab(metaTab_t *tabla,char *label,char *descri,int lenLista,int lenChar);
 int addItemObjMetaTab(metaTab_t *tabla,itemObjeto_t **objeto);
 char *getNombreItemTabla(metaTab_t *tabla,int itemTabla);
 int  getLenCharItemTabla(metaTab_t *tabla,int itemTabla);
