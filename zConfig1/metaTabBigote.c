@@ -13,7 +13,10 @@
 
     &name : nombre del elemento
 
-    #char  : datos de tipo char, solo uno
+   #callback : datos de tipo callback dentro de un item de la tabla, solo uno (o ninguno)
+     &tipoCB : tipo del retorno del callback
+
+    #char  : datos de tipo char, dentro de un item de la tabla, solo uno (o ninguno)
      &lenChar : longitud de char
 
     #list  : datos de tipo list, solo uno
@@ -76,6 +79,12 @@ tablaInfo_t *tablaInfo= (tablaInfo_t *) closure;
 if (strcmp(name,"titulo")==0)
     {fprintf(file,"%s",tablaInfo->titulo);return(0);}
 
+if (strcmp(name,"tipoCB")==0)
+{
+   char *tipo= getTipoItemCallBack(tablaInfo->tabla,tablaInfo->itemTabla);
+    fprintf(file,"%s",tipo);
+    return(0);
+}
 if (strcmp(name,"name")==0)
 {
    char *nombre= getNombreItemTabla(tablaInfo->tabla,tablaInfo->itemTabla);
@@ -127,6 +136,12 @@ if (strcmp(name,"tabla")==0)
 if (strcmp(name,"char")==0)
 {
  if (tablaInfo->tabla->item[tablaInfo->itemTabla].tipo=='C')   
+    {tablaInfo->seccion=seccionTipo;return(1);}// continua
+ return(0);// ignora esta seccion
+}
+if (strcmp(name,"callback")==0)
+{
+ if (tablaInfo->tabla->item[tablaInfo->itemTabla].tipo=='Y')   
     {tablaInfo->seccion=seccionTipo;return(1);}// continua
  return(0);// ignora esta seccion
 }

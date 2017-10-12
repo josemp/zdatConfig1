@@ -97,6 +97,12 @@ fprintf(ou,"]");
 
 count++;
 
+if (count==0) fprintf(ou,"\n"); else fprintf(ou,",\n");
+
+
+
+count++;
+
 fprintf(ou,"\n}");
 fclose(ou);
 

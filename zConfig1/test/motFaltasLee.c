@@ -63,6 +63,7 @@ if (strcmp(label,"hostias")==0)
 
 
 
+
 // Char name
 if (strcmp(label,"name")==0)
  {
@@ -71,6 +72,7 @@ if (strcmp(label,"name")==0)
    strcpy(motFaltas->name,resto);
    continue;
  }
+
 
 
 
@@ -139,6 +141,7 @@ if (strcmp(label,"ped")==0)
 
 
 
+
 // Objeto cons
 if (strcmp(label,"cons")==0)
  {
@@ -171,6 +174,7 @@ if (strcmp(label,"cons")==0)
 }
 
 
+
 // LISTA reinicio
 if (strcmp(label,"reinicio")==0)
  {
@@ -191,6 +195,12 @@ if (strcmp(label,"reinicio")==0)
    }// end while
   continue;
  }
+
+
+
+
+
+
 
 
 
@@ -388,6 +398,10 @@ for (i=0;i<3;i++)
  }
 // si hay un break arriba, hay que hacer un continue, pero sino no hay que hacerlo, pues puede ser el ultimo de la linea, uso el campo para eso
 if (!campo) continue;  
+
+
+
+
 
 
 

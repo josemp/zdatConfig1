@@ -25,6 +25,7 @@ metaTab_t *leeMetaTab(char *file)
  char *sdescriI;
  char *slen,*slen1;
  char *tipo;
+ char *tipoCallBack;
 char *resto;
  char buf[10000l];
  char hayItems=0;
@@ -55,9 +56,18 @@ char *resto;
    pun++;
    resto=pun;
    if (strlen(resto)== 0) break;
-   if (tipo[0]!='C' && tipo[0]!='L' && tipo[0]!='O') break;
+   if (tipo[0]!='C' && tipo[0]!='L' && tipo[0]!='O' && tipo[0]!='Y') break;
    switch (tipo[0])
       {
+     case 'Y':
+        sdescri=resto;
+        pun=memchr(resto,':',strlen(resto));
+        if (!pun) break;
+        *pun=0;
+        pun++;
+        tipoCallBack=pun;
+        addItemCallBackMetaTab(&metaTab,label,sdescri,tipoCallBack);
+     break;
      case 'C':
         sdescri=resto;
         pun=memchr(resto,':',strlen(resto));

@@ -1,6 +1,8 @@
 {{={% %}=}}{%#ignore%}
    #ignore: esta seccion
    #tabla : seccion de recorrer toda la tabla
+   #callback : datos de tipo callback dentro de un item de la tabla, solo uno (o ninguno)
+     &tipoCB : tipo del retorno del callback
    #char  : datos de tipo char, solo uno
    #list  : datos de tipo list, solo uno
    #object : datos de tipo object, solo uno
@@ -24,7 +26,8 @@ typedef struct { {%#itemObjeto%}
 /*  Estructura de la tabla {%&titulo%}  */ 
 
 typedef struct {{%#tabla%} {%#char%} 
- char {%&name%}[{%&lenChar%}+1];{%/char%}{%#list%}
+ char {%&name%}[{%&lenChar%}+1];{%/char%}{%#callback%}
+ {%&tipoCB%} (*{%&name%})();{%/callback%}{%#list%}
  char {%&name%}[{%&lenLista%}][{%&lenChar%}+1];{%/list%}{%#object%}
  {%&name%}_t {%&name%}; {%/object%} {%/tabla%}
 } {%&titulo%}_t;

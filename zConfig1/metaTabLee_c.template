@@ -87,7 +87,8 @@ if (strcmp(label,"{%&name%}")==0)
    pun++;
    if (strlen(pun)==0) continue;
    resto=pun;
-{%/itemObjeto%}}{%/object%}{%/tabla%}
+{%/itemObjeto%}}{%/object%}
+{%/tabla%}
 continue;
  }
 

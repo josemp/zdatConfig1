@@ -103,9 +103,14 @@ for (i=0;i<tabla->numItems;i++)
       fprintf(ou,"\n");
 
     }
-
+/*
+ if (tabla->item[i].tipo=='Y')
+    {
+      itemLista=tabla->item[i].data;
+      fprintf(ou,"%s: miCb : eventoCallBack \n",itemLista->nombre);
+    }
+*/
 }
-
 fclose(ou);
 return(0);
 
@@ -115,6 +120,7 @@ generaLista(char *nombre,metaTab_t *tabla)
 int i,j;
 itemChar_t *itemChar;
 itemLista_t *itemLista;
+itemCallBack_t *itemCallBack;
 itemObjeto_t *itemObjeto;
 int num=0;
 char namefile[200];
@@ -133,7 +139,16 @@ for (i=0;i<tabla->numItems;i++)
       num++;
 
   }
+/*
+ if (tabla->item[i].tipo=='Y')
+  {
+      itemCallBack=tabla->item[i].data;
+      if (num!=0) fprintf(ou,":");
+      fprintf(ou,"%s",itemChar->nombre);
+      num++;
 
+  }
+*/
  if (tabla->item[i].tipo=='L')
   {
       itemLista=tabla->item[i].data;

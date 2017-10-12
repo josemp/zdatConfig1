@@ -7,3 +7,6 @@ ped:O:DescPed:ip:DescIp:20:puerto:DescPuerto:6:timeutConexion:DescTimOut Conexio
 cons:O:DescConsulta:ip:DescIp:20:puerto:DescPuerto:6
 # linea tipo L
 reinicio:L:Descri:3:7
+# linea tipo Y
+cbInit:Y:Puntero callback:int
+

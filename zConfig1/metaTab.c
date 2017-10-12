@@ -20,6 +20,30 @@ addItemObjeto(itemObjeto_t *objeto,char *label,char *descri,int len)
   objeto->item[numItem]=item;
   objeto->numItems++;
 }
+int addItemCallBackMetaTab(metaTab_t *tabla,char *label,char *descri,char *tipo)
+{
+metaTabItem_t tabItem;
+tabItem.tipo='Y';
+itemCallBack_t *itemCallBack;
+itemCallBack=malloc(sizeof(itemCallBack_t));
+strcpy(itemCallBack->nombre,label);
+strcpy(itemCallBack->descri,descri);
+strcpy(itemCallBack->tipo,tipo);
+tabItem.data=itemCallBack;
+
+ if (tabla->numItems==0)
+ tabla->item=malloc(sizeof(metaTabItem_t));
+ else
+ tabla->item=realloc(tabla->item,(tabla->numItems+1)*sizeof(metaTabItem_t));
+
+ tabla->item[tabla->numItems]=tabItem;
+ tabla->numItems++;
+
+
+
+
+
+}
 addItemCharMetaTab(metaTab_t *tabla,char *label,char *descri,int len)
 {
  metaTabItem_t tabItem;
@@ -96,6 +120,11 @@ char *getNombreItemTabla(metaTab_t *tabla,int itemTabla)
     itemObjeto_t  *itemObjeto = (itemObjeto_t *) tabla->item[itemTabla].data;
     return(itemObjeto->nombre);
    }
+ if (tabla->item[itemTabla].tipo=='Y')
+   {
+    itemCallBack_t  *itemCallBack = (itemCallBack_t *) tabla->item[itemTabla].data;
+    return(itemCallBack->nombre);
+   }
 return(NULL);
 }
 int  getLenCharItemTabla(metaTab_t *tabla,int itemTabla)
@@ -115,13 +144,9 @@ int  getLenCharItemTabla(metaTab_t *tabla,int itemTabla)
     itemLista_t *itemLista = (itemLista_t *) tabla->item[itemTabla].data;
     return(itemLista->lenChar);
    }
- if (tabla->item[itemTabla].tipo=='O')
-   {
-    return(-1);
-   }
 return(-1);
 }
-int  getLenListaItemTabla(metaTab_t *tabla,int itemTabla)
+int getLenListaItemTabla(metaTab_t *tabla,int itemTabla)
 {
 
  if (itemTabla >= tabla->numItems)
@@ -129,23 +154,28 @@ int  getLenListaItemTabla(metaTab_t *tabla,int itemTabla)
    
  if (itemTabla< 0)
    return(-1);
- if (tabla->item[itemTabla].tipo=='C')
-   {
-    return(-1);
-   }
  if (tabla->item[itemTabla].tipo=='L')
    {
     itemLista_t *itemLista = (itemLista_t *) tabla->item[itemTabla].data;
     return(itemLista->lenLista);
 
    }
- if (tabla->item[itemTabla].tipo=='O')
-   {
-    return(-1);
-   }
 return(-1);
 }
 
+char *getTipoItemCallBack(metaTab_t *tabla,int itemTabla)
+{
+
+ if (itemTabla >= tabla->numItems)
+   return(NULL);
+
+ if (tabla->item[itemTabla].tipo=='Y')
+   {
+    itemCallBack_t *itemCallBack = (itemCallBack_t *) tabla->item[itemTabla].data;
+    return(itemCallBack->tipo);
+   }
+return(NULL);
+}
 
 char *getNombreItemObjeto(metaTab_t *tabla,int itemTabla,int numItemObjeto)
 {
@@ -156,14 +186,9 @@ char *getNombreItemObjeto(metaTab_t *tabla,int itemTabla,int numItemObjeto)
  if (itemTabla< 0)
    return(NULL);
 
- if (tabla->item[itemTabla].tipo=='C')
-    return(NULL);
-
- if (tabla->item[itemTabla].tipo=='L')
-    return(NULL);
-
  if (tabla->item[itemTabla].tipo!='O')
     return(NULL);
+
 
 // Solo quedan objetos
 
@@ -186,14 +211,9 @@ int getLenCharItemObjeto(metaTab_t *tabla,int itemTabla,int numItemObjeto)
  if (itemTabla< 0)
    return(-1);
 
- if (tabla->item[itemTabla].tipo=='C')
-    return(-1);
-
- if (tabla->item[itemTabla].tipo=='L')
-    return(-1);
-
  if (tabla->item[itemTabla].tipo!='O')
     return(-1);
+
 
 // Solo quedan objetos
 
@@ -214,12 +234,6 @@ int  getNumItemsObjeto(metaTab_t *tabla,int itemTabla)
 
  if (itemTabla< 0)
    return(-1);
-
- if (tabla->item[itemTabla].tipo=='C')
-    return(-1);
-
- if (tabla->item[itemTabla].tipo=='L')
-    return(-1);
 
  if (tabla->item[itemTabla].tipo!='O')
     return(-1);

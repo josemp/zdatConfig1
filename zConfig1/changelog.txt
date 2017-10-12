@@ -1,3 +1,7 @@
+jue oct 12 08:22:36 CEST 2017
+Añado el tipo Y que es un callback del tipo  tipo (*etiqueta)();
+Simplemente lo añado a la estructura en principio
+
 jue ago 24 11:10:07 CEST 2017
 Anado la generaion de ficher de lista nombreList.tab
 anado la lectura de lista

@@ -26,6 +26,7 @@ typedef struct {
  char name[50+1];  
  ped_t ped;   
  cons_t cons;   
- char reinicio[3][7+1]; 
+ char reinicio[3][7+1];  
+ int (*cbInit)(); 
 } motFaltas_t;
 
