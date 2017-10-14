@@ -236,6 +236,9 @@ int i;
 char buf[20001];
 int numItems=0;
 char *pun,*pun1,*resto,*campo,*label;
+
+memset(&motFaltas,0,sizeof(motFaltas_t));
+
 FILE *in = fopen(nombreFichero,"r");
 if (!in) return(-1);
 while(1)
@@ -409,6 +412,7 @@ if (!campo) continue;
 if (numItems==0) *motFaltasLista=malloc(sizeof(motFaltas_t));
 else *motFaltasLista=realloc(*motFaltasLista,(numItems+1)*sizeof(motFaltas_t));
 (*motFaltasLista)[numItems]=*motFaltas;
+memset(&motFaltas,0,sizeof(motFaltas_t));
 numItems++;
 continue;
 }
