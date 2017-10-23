@@ -7,16 +7,11 @@ Inicialmente concebido para linux y programado en C
 `zconfig1.c`    - Programa Main de la utilidad.  
 `metaTab.h`	    - Estructuras meta de las tablas meta.  
 `metaTab.c`	    - Funciones de lectura del contenido de una tabla meta.  
-`metaTabAdd.h`,`metaTabAdd.c`  - Funciones Add para la generacion de las estructuras meta
-
-`metaTabLee.c`	- Funcion de lectura de una tabla meta hacia las estructuras meta
-
-`limpia.c`	    - Funciones auxiliares de buffers
-
-`metaTabBigote.c`	- Funcion de lectura de templates y generacion basado en las estructuras meta leidas del fichero meta
-
-`metaTabGenera.c`	- Funcion de generacion de distintos tipos de ficheros, amenudo utilizando templates y mustach
-
+`metaTabAdd.h`,`metaTabAdd.c`  - Funciones Add para la generacion de las estructuras meta.  
+`metaTabLee.c`	- Funcion de lectura de una tabla meta hacia las estructuras meta.  
+`limpia.c`	    - Funciones auxiliares de buffers.  
+`metaTabBigote.c`	- Funcion de lectura de templates y generacion basado en las estructuras meta leidas del fichero meta.  
+`metaTabGenera.c`	- Funcion de generacion de distintos tipos de ficheros, amenudo utilizando templates y mustach.  
 ### plantillas
 makefileMain.template
 makefileTest.template	
