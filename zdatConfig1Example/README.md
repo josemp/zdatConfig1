@@ -5,9 +5,14 @@
 
 ### Ficheros Generados
 **motFaltas2Json.c**
-> `motFaltas2Json(FILE *ou,motFaltas_t *motFaltas)`  
+Genera json data de la tabla
+> `int motFaltas2JsonFile(char *nombreFichero,motFaltas_t *motFaltas)`  
 > `size_t motFaltas2JsonBuf(char **buf,motFaltas_t *motFaltas)`  
 > `motFaltas2Json(FILE *ou,motFaltas_t *motFaltas)`  
+
+**motFaltasLee.c**
+motFaltasLee(char *nombreFichero,motFaltas_t *motFaltas)
+motFaltasLeeLista(char *nombreFichero,motFaltas_t **motFaltasLista)
 
 
 cJSON.c
