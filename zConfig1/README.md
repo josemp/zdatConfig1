@@ -1,7 +1,7 @@
 # zConfig1
 Utilidad para generar c-libreria estática para leer ficheros de formato [ZCONF1][TAB_ZCONF1]
 Inicialmente concebido para linux y programado en C
-## Introducción
+## Introducción y uso
 Este proyecto contiene los fuentes de una utilidad llamada [zconf1][ZCONF1], mediante la cual, construyendo un [fichero de texto meta][META_ZCONF1] que describe un [fichero de texto de tipo configuración][TAB_ZCONF1] generamos un API (C LIBRARY) personalizada para [el tipo de fichero diseñado][EXAMPLE_ZCONF1] 
 
 Una vez generada la utilidad, si necesitamos un [fichero de texto de tipo configuración][TAB_ZCONF1], podemos generar la API para programar dicho fichero de este modo:
@@ -66,7 +66,16 @@ makefile
 motFaltasMeta.tab  - Fichero meta para test  
 
 ### Archivos intermedios no incluidos
- *Includes de programas para posteriormete generarlos*
+
+*Archivos generados por makefile*
+Los programas metaTab.h y metaTab.c son usados para generar la utilidad, y además se utilizan en la propia utilidad, por lo que el propio makefile los copia en un template para que luego se conviertan en buffers incluidos con la utilidad template2Include
+
+metaTab_h.template  
+metaTab_c.template  
+
+
+
+ *Includes de programas para posteriormete generarlos*  
  Generados por template2Include
  
  metaTabGetKeys_c.h  
@@ -75,22 +84,14 @@ motFaltasMeta.tab  - Fichero meta para test
  metaTabCargaMeta_c.h  
  metaTabTabla_h.h  
  metaTabLee_c.h  
- metaTabTest_c.h 
- makefileMain.h 
- makefileTest.h 
- metaTab2Json_c.h 
- metaTabParseJson_c.h 
+ metaTabTest_c.h  
+ makefileMain.h  
+ makefileTest.h  
+ metaTab2Json_c.h   
+ metaTabParseJson_c.h  
  cJSON_c.h 
  cJSON_h.h
 
-Estos archivos se Generan en la compilacion
-doxygen_sqlite3.db	Añado zconfig1 utilidad	25 days ago
-leeme.txt	Añado zconfig1 utilidad	25 days ago
-metaTab_h.h	anado el tipo Y	11 days ago
-metaTab_h.template	anado el tipo Y	11 days ago
-
-..		
-test	anadida inicializacion en la lectura de lista	9 days ago
 
 
 
