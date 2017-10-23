@@ -31,6 +31,7 @@ NOTA. La API también gestiona LISTAS : ficheros con lineas que cumplen la espec
 `metaTabGenera.c`	- Funcion de generacion de distintos tipos de ficheros, amenudo utilizando templates y mustach.  
 
 ### plantillas
+`metaTabTabla_h.template`     - Generacion de la extructura de la tabla
 `makefileMain.template`       - Generación del makefile principal de la tabla generada.  
 `makefileTest.template`       - Generación del makefile TEST del  de la tabla generada.  
 `metaTab2Json_c.template`	    - Generación del programa de generación de Json de la tabla.  
