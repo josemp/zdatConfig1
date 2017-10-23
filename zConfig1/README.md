@@ -17,6 +17,6 @@ Inicialmente concebido para linux y programado en C
 
 
 
-[TAB_ZCONF1]: zdatConfig1Tab/readme.md "Descripción del formato de ficheros ZCONF1"
-[META_ZCONF1]: zdatConfig1TabMeta/readme.md "Descripción del formato de ficheros META_ZCONF1"
-[ZCONF1]: zConfig1/README.md "Fuentes en C para la generación de programas de manejo de ficheros ZCONF1"
+[TAB_ZCONF1]: ../zdatConfig1Tab/readme.md "Descripción del formato de ficheros ZCONF1"
+[META_ZCONF1]: ../zdatConfig1TabMeta/readme.md "Descripción del formato de ficheros META_ZCONF1"
+[ZCONF1]: README.md "Fuentes en C para la generación de programas de manejo de ficheros ZCONF1"
