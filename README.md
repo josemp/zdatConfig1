@@ -19,7 +19,7 @@ Trata de tipo de ficheros que llamo **ZCONF1** pensados para configuración. Su 
 [Documento con la descripción 'META' de ficheros ZCONF1][META_ZCONF1]
 
 * carpeta **zConf1** 
-[Fuentes de la utilidad zConf1 generadora de programas ZCONF1][ZCONF1]
+[Fuentes de la utilidad zConf1 generadora de programas ZCONF1][EXAMPLE_ZCONF1]
 
 * carpeta **zdatConfig1Example** 
 [Ejemplo generado con la utilidad zConf1 ZCONF1][ZCONF1]
