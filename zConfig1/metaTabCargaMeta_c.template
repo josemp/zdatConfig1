@@ -1,0 +1,48 @@
+{{={% %}=}}{%#ignore%}
+   #ignore: esta seccion
+   #tabla : seccion de recorrer toda la tabla
+   #callback : datos de tipo callback dentro de un item de la tabla, solo uno (o ninguno)
+     &tipoCB : tipo del retorno del callback
+   #char  : datos de tipo char, solo uno
+   #list  : datos de tipo list, solo uno
+   #object : datos de tipo object, solo uno
+   #itemObjeto : seccion de items de objeto
+   #firstObjeto
+   &titulo : titulo de la tabla
+   &numItems : numero de items de la tabla
+   &name : nombre del elemento
+   &lenChar : longitud de char
+   &lenLista : longitud de la lista
+   &numItemsObjeto : numero de items del objeto
+   &itemObjeto.name : nombre de item objeto
+   &itemObjeto.len : len de item objeto{%/ignore%}
+#include <stdio.h>
+#include "metaTab.h"
+{%#tabla%}{%#char%}
+itemChar_t itemChar_{%&name%}={"{%&name%}","{%&descri%}",{%&lenChar%}};
+{%/char%}{%#list%}
+itemLista_t itemLista_{%&name%}={"{%&name%}","{%&descri%}",{%&lenLista%},{%&lenChar%}};
+{%/list%}{%#callback%}
+itemCallBack_t itemCallBack_{%&name%}={"{%&name%}","{%&descri%}","{%&tipoCB%}"};
+{%/callback%}{%#object%}
+itemChar_t itemCharObjeto_{%&name%}[{%&numItemsObjeto%}]={
+	{%#itemObjeto%}{%^firstObjeto%},{%/firstObjeto%}
+		{"{%&itemObjeto.name%}","{%&itemObjeto.descri%}",{%&itemObjeto.len%}}{%/itemObjeto%}};
+itemObjeto_t itemObjeto_{%&name%}={"{%&name%}","{%&descri%}",itemCharObjeto_{%&name%},{%&numItemsObjeto%}};
+{%/object%}{%/tabla%}
+metaTabItem_t metaTabItem_{%&titulo%}[]={
+{%#tabla%}{%^first%},{%/first%}{%#first%} {%/first%}{%#char%}{'C',(itemChar_t *) &itemChar_{%&name%}}
+{%/char%}{%#list%}{'L',(itemLista_t *) &itemLista_{%&name%}}
+{%/list%}{%#callback%}{'Y',(itemCallBack_t *)&itemCallBack_{%&name%}}
+{%/callback%}{%#object%}{'O',(itemObjeto_t *)&itemObjeto_{%&name%}} 
+{%/object%}{%/tabla%}
+};
+
+metaTab_t metaTab_{%&titulo%}={
+"{%&titulo%}",{%&numItems%},metaTabItem_{%&titulo%} };
+
+int getMeta_{%&titulo%}(metaTab_t *metaTab)
+{
+ return getMeta(&metaTab_{%&titulo%},metaTab);
+}
+

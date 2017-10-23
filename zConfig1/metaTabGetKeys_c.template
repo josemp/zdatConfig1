@@ -1,0 +1,62 @@
+{{={% %}=}}{%#ignore%}
+   #ignore: esta seccion
+   #tabla : seccion de recorrer toda la tabla
+ ------ NEW ---
+   #callback : datos de tipo callback dentro de un item de la tabla, solo uno (o ninguno)
+     &tipoCB : tipo del retorno del callback
+   #char  : datos de tipo char, solo uno
+   #list  : datos de tipo list, solo uno
+   #object : datos de tipo object, solo uno
+   #itemObjeto : seccion de items de objeto
+   &titulo : titulo de la tabla
+   &name : nombre del elemento
+   &lenChar : longitud de char
+   &lenLista : longitud de la lista
+   &itemObjeto.name : nombre de item objeto
+   &itemObjeto.len : len de item objeto{%/ignore%}
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <memory.h>
+#include "{%&titulo%}.h"
+
+/****************************************************************/
+/*  Lectura de parejas key:data y su grabacon en la estructura */
+/****************************************************************/
+/* El formato de los key's es "label" para los char
+                              "label.3" para el 3er item de un array
+                              "label.label" para los objetos
+*/
+int {%&titulo%}GetKeys({%&titulo%}_t *{%&titulo%},char *key,char *data)
+{
+char *key0;
+char *key1;
+key0=key;
+key1=memchr(key0,'.',strlen(key0));
+if (key1!=NULL && strlen(key1)==1)
+  key1=NULL;
+if (key1!=NULL)
+{
+ *key1=0;
+ key1++;
+}
+{%#tabla%}{%#char%}if (key1==NULL &&  strcmp(key,"{%&name%}")==0)
+    {
+      strncpy({%&titulo%}->{%&name%},data,{%&lenChar%});
+      return(0);
+    }{%/char%}{%#list%}
+if (key1!=NULL &&  strcmp(key,"{%&name%}")==0 && atoi(key1)>0 && atoi(key1)<{%&lenLista%})
+{
+      strncpy({%&titulo%}->{%&name%}[atoi(key1)],data,{%&lenChar%});
+      return(0);
+}{%/list%}{%#object%}
+if (key1!=NULL && strcmp(key,"{%&name%}")==0)
+{{%#itemObjeto%}
+ if (strcmp(key1,"{%itemObjeto.name%}")==0)
+   {
+      strncpy({%&titulo%}->{%&name%}.{%&itemObjeto.name%},data,{%&itemObjeto.len%});
+      return(0);
+   }{%/itemObjeto%}
+}{%/object%}
+{%/tabla%}
+}// End function
