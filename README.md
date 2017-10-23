@@ -31,4 +31,4 @@ Mediante la construcción de un [fichero de texto meta][META_ZCONF1] que describ
 [TAB_ZCONF1]: zdatConfig1Tab/readme.md "Descripción del formato de ficheros ZCONF1"
 [META_ZCONF1]: zdatConfig1TabMeta/readme.md "Descripción del formato de ficheros META_ZCONF1"
 [ZCONF1]: zConfig1/README.md "Fuentes en C para la generación de programas de manejo de ficheros ZCONF1"
-[EXAMPLE_ZCONF1]: zdatConfig1Example/README.md "Ejemplo de uso de la utilidad ZCONF1. Fuentes, Descripción y Uso. 
+[EXAMPLE_ZCONF1]: zdatConfig1Example/README.md "Ejemplo de uso de la utilidad ZCONF1. Fuentes, Descripción y Uso" 
