@@ -1,12 +1,17 @@
 # zConfig1
 Utilidad para generar c-libreria estática para leer ficheros de formato [ZCONF1][TAB_ZCONF1]
+
 Inicialmente concebido para linux y programado en C
+
 ## Introducción y uso
 Este proyecto contiene los fuentes de una utilidad llamada [zconf1][ZCONF1], mediante la cual, construyendo un [fichero de texto meta][META_ZCONF1] que describe un [fichero de texto de tipo configuración][TAB_ZCONF1] generamos un API (C LIBRARY) personalizada para [el tipo de fichero diseñado][EXAMPLE_ZCONF1] 
 
 Una vez generada la utilidad, si necesitamos un [fichero de texto de tipo configuración][TAB_ZCONF1], podemos generar la API para programar dicho fichero de este modo:
+
 Prefijo : tablaConf // Elegimos un prefijo que identifique la tabla
+
 Fichero Meta : tablaConfMeta.tab // Creamos el fichero meta que describa la tabla
+
 Generación : ejecutamos #zconfig1 tablaConf
 
 Esto generara un API para manejar el fichero.
