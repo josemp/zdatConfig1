@@ -1,9 +1,10 @@
 
-
-
 ## Contenido
 
 ### Ficheros Generados
+**motFaltas.h**  
+> `motFaltas_t`  
+
 **motFaltas2Json.c**
 Genera json data de la tabla  
 > `int motFaltas2JsonFile(char *nombreFichero,motFaltas_t *motFaltas)`  
@@ -12,33 +13,34 @@ Genera json data de la tabla
 
 **motFaltasLee.c**  
 Lee fichero en formato motFaltas  
-> `motFaltasLee(char *nombreFichero,motFaltas_t *motFaltas)`
+> `motFaltasLee(char *nombreFichero,motFaltas_t *motFaltas)`  
 > `motFaltasLeeLista(char *nombreFichero,motFaltas_t **motFaltasLista)`  
 
-motFaltasParseJson.c
-motFaltasGetKeys.c
+**motFaltasParseJson.c**  
+Parse Json tabla motFaltas  
+> `motFaltasParseJson(char *jsonString,motFaltas_t *motFaltas)`  
 
-metaTab.c
-metaTab.h
-motFaltasCargaMeta.c
+**motFaltasGetKeys.c**  
+Parse datos "key" "value" de la tabla
+> `int motFaltasGetKeys(motFaltas_t *motFaltas,char *key,char *data)`  
+
+**motFaltasCargaMeta.c**  
+La tabla meta guardada en una estructura  
+> `metaTab_t metaTab_motFaltas`
+> `int getMeta_motFaltas(metaTab_t *metaTab)`
+
+**metaTab.h**  
+**metaTab.c**  
 
 
-cJSON.c
-cJSON.h
-
-motFaltasTest.c
 
 
+cJSON.c  
+cJSON.h  
 
--rw-r--r-- 1 parra parra   582 oct 23 10:02 makefileMain
--rw-r--r-- 1 parra parra   571 oct 23 10:02 makefileTest
--rw-r--r-- 1 parra parra  6515 oct 23 10:02 metaTab.c
--rw-r--r-- 1 parra parra  1805 oct 23 10:02 metaTab.h
+motFaltasTest.c  
 
--rw-r--r-- 1 parra parra  1162 oct 23 10:02 motFaltasCargaMeta.c
--rw-r--r-- 1 parra parra   562 oct 23 10:02 motFaltas.h
--rw-r--r-- 1 parra parra   115 oct 23 10:02 motFaltasList.tab
--rw-r--r-- 1 parra parra   349 oct 23 10:01 motFaltasMeta.tab
--rw-r--r-- 1 parra parra   110 oct 23 10:02 motFaltas.tab
--rw-r--r-- 1 parra parra  2785 oct 23 10:02 motFaltasTest.c
+makefileMain  
+makefileTest  
+
 
