@@ -1,5 +1,5 @@
 # zConfig1
-Utilidad para generar c-libreria estática para leer ficheros [ZCONF1](https://github.com/josemp/zdatConfig1Tab)
+Utilidad para generar c-libreria estática para leer ficheros de formato [ZCONF1][TAB_ZCONF1]
 Inicialmente concebido para linux y programado en C
 ## Contenido
 [link](doc/zConfigFileDoc.md)
