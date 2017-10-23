@@ -14,9 +14,17 @@ limpia.c	    - Funciones auxiliares de buffers
 metaTabBigote.c	- Funcion de lectura de templates y generacion basado en las estructuras meta leidas del fichero meta
 metaTabGenera.c	- Funcion de generacion de distintos tipos de ficheros, amenudo utilizando templates y mustach
 
-
+### plantillas
+makefileMain.template
+makefileTest.template	
+metaTab2Json_c.template	
+metaTabLee_c.template	
+metaTabParseJson_c.template	
+metaTabTest_c.template	
 metaTabCargaMeta_c.template
 metaTabGetKeys_c.template
+cJSON_c.template
+cJSON_h.template	
 
 ### utilidad
 template2Include.c	branche template&json to master	20 days ago
@@ -39,13 +47,7 @@ changelog.txt	anado el tipo Y	11 days ago
 makeLib	Añado zconfig1 utilidad	25 days ago
 makefile	branche template&json to master	20 days ago
 
-### plantillas
-makefileMain.template	branche template&json to master	20 days ago
-makefileTest.template	branche template&json to master	20 days ago
-metaTab2Json_c.template	branche template&json to master	20 days ago
-metaTabLee_c.template	anadida inicializacion en la lectura de lista	9 days ago
-metaTabParseJson_c.template	branche template&json to master	20 days ago
-metaTabTest_c.template	branche template&json to master	20 days ago
+
 
 
 ..		
