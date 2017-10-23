@@ -4,13 +4,19 @@ Inicialmente concebido para linux y programado en C
 ## Contenido
 
 ### programa zconfig1
-zconfig1.c
-metaTab.c	anado el tipo Y	11 days ago
-metaTab.h	anado el tipo Y	11 days ago
-limpia.c	Añado zconfig1 utilidad	25 days ago
-metaTabLee.c	anado el tipo Y	11 days ago
-metaTabBigote.c	anado el tipo Y	11 days ago
-metaTabGenera.c	anado el tipo Y	11 days ago
+zconfig1.c    - Programa Main de la utilidad
+metaTab.h	    - Estructuras meta de las tablas meta
+metaTabAdd.h  - Funciones Add para la generacion de las estructuras meta
+metaTabAdd.c 
+metaTabLee.c	- Funcion de lectura de una tabla meta hacia las estructuras meta
+metaTab.c	    - Funciones de lectura del contenido de una tabla meta
+limpia.c	    - Funciones auxiliares de buffers
+metaTabBigote.c	- Funcion de lectura de templates y generacion basado en las estructuras meta leidas del fichero meta
+metaTabGenera.c	- Funcion de generacion de distintos tipos de ficheros, amenudo utilizando templates y mustach
+
+
+metaTabCargaMeta_c.template
+metaTabGetKeys_c.template
 
 ### utilidad
 template2Include.c	branche template&json to master	20 days ago
