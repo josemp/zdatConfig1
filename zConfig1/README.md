@@ -1,6 +1,18 @@
 # zConfig1
 Utilidad para generar c-libreria estática para leer ficheros de formato [ZCONF1][TAB_ZCONF1]
 Inicialmente concebido para linux y programado en C
+## Introducción
+Este proyecto contiene los fuentes de una utilidad llamada [zconf1][ZCONF1], mediante la cual, construyendo un [fichero de texto meta][META_ZCONF1] que describe un [fichero de texto de tipo configuración][TAB_ZCONF1] generamos un API (C LIBRARY) personalizada para [el tipo de fichero diseñado][EXAMPLE_ZCONF1] 
+
+Una vez generada la utilidad, si necesitamos un [fichero de texto de tipo configuración][TAB_ZCONF1], podemos generar la API para programar dicho fichero de este modo:
+Prefijo : tablaConf // Elegimos un prefijo que identifique la tabla
+Fichero Meta : tablaConfMeta.tab // Creamos el fichero meta que describa la tabla
+Generación : ejecutamos #zconfig1 tablaConf
+
+Esto generara un API para manejar el fichero.
+
+NOTA. La API también gestiona LISTAS : ficheros con lineas que cumplen la especificacion META.
+
 ## Contenido
 
 ### programa zconfig1
@@ -9,7 +21,7 @@ Inicialmente concebido para linux y programado en C
 `metaTab.c`	    - Funciones de lectura del contenido de una tabla meta.  
 `metaTabAdd.h`,`metaTabAdd.c`  - Funciones Add para la generacion de las estructuras meta.  
 `metaTabLee.c`	- Funcion de lectura de una tabla meta hacia las estructuras meta.  
-`limpia.c`	    - Funciones auxiliares de buffers.  
+`metaTabLimpia.c`	    - Funciones auxiliares de buffers.  
 `metaTabBigote.c`	- Funcion de lectura de templates y generacion basado en las estructuras meta leidas del fichero meta.  
 `metaTabGenera.c`	- Funcion de generacion de distintos tipos de ficheros, amenudo utilizando templates y mustach.  
 
@@ -25,11 +37,13 @@ Inicialmente concebido para linux y programado en C
 `cJSON_c.template`            - Template para generar cJSON.c en el API de la tabla generada.  
 `cJSON_h.template`	          - Template para generar cJSON.h en el API de la tabla generada.  
 ### utilidad
-`template2Include.c`	- Programa para generar includes de ficheros.
+`template2Include.c`	- Programa para generar includes de ficheros.  
+Los ficheros que genera la utilidad zconfig1, se almacenan en un buffer en un include del programa, y cuando se ejecuta la utilidad se l
 
 ### programas externos utilizados
-`cJSON.c`	
-`cJSON.h`	
+https://github.com/DaveGamble/cJSON
+`cJSON.c`  
+`cJSON.h`  
 
 https://gitlab.com/jobol/mustach  
 `mustach.c`	 
@@ -48,38 +62,44 @@ makeLib
 makefile	
 
 
+### test
+motFaltasMeta.tab  - Fichero meta para test  
 
+### Archivos intermedios no incluidos
+ *Includes de programas para posteriormete generarlos*
+ Generados por template2Include
+ 
+ metaTabGetKeys_c.h  
+ metaTab_h.h  
+ metaTab_c.h  
+ metaTabCargaMeta_c.h  
+ metaTabTabla_h.h  
+ metaTabLee_c.h  
+ metaTabTest_c.h 
+ makefileMain.h 
+ makefileTest.h 
+ metaTab2Json_c.h 
+ metaTabParseJson_c.h 
+ cJSON_c.h 
+ cJSON_h.h
+
+Estos archivos se Generan en la compilacion
+doxygen_sqlite3.db	Añado zconfig1 utilidad	25 days ago
+leeme.txt	Añado zconfig1 utilidad	25 days ago
+metaTab_h.h	anado el tipo Y	11 days ago
+metaTab_h.template	anado el tipo Y	11 days ago
 
 ..		
 test	anadida inicializacion en la lectura de lista	9 days ago
-cJSON_c.h	branche template&json to master	20 days ago
-cJSON_c.template	branche template&json to master	20 days ago
-cJSON_h.h	branche template&json to master	20 days ago
-cJSON_h.template	branche template&json to master	20 days ago
-doxygen_sqlite3.db	Añado zconfig1 utilidad	25 days ago
-leeme.txt	Añado zconfig1 utilidad	25 days ago
-makefileMain.h	branche template&json to master	20 days ago
-makefileTest.h	branche template&json to master	20 days ago
-metaTab2Json_c.h	branche template&json to master	20 days ago
-metaTabLee_c.h	anadida inicializacion en la lectura de lista	9 days ago
-metaTabLimpia.c	branche template&json to master	20 days ago
-metaTabParseJson_c.h	branche template&json to master	20 days ago
-metaTabTest_c.h	branche template&json to master	20 days ago
-metaTab_h.h	anado el tipo Y	11 days ago
-metaTab_h.template	anado el tipo Y	11 days ago
-template2Include	branche template&json to master	20 days ago
 
 
 
-## Contenido
+## Links
 * carpeta **zdatConfig1Tab** 
 [Documento con la descripción del formato de los ficheros ZCONF1][TAB_ZCONF1]
 
 * carpeta **zdatConfig1TabMeta** 
 [Documento con la descripción 'META' de ficheros ZCONF1][META_ZCONF1]
-
-* carpeta **zConf1** 
-[Fuentes de la utilidad zConf1 generadora de programas ZCONF1][ZCONF1]
 
 
 
