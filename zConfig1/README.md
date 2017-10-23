@@ -2,7 +2,65 @@
 Utilidad para generar c-libreria estática para leer ficheros de formato [ZCONF1][TAB_ZCONF1]
 Inicialmente concebido para linux y programado en C
 ## Contenido
-[link](doc/zConfigFileDoc.md)
+
+### programa zconfig1
+zconfig1.c
+metaTab.c	anado el tipo Y	11 days ago
+metaTab.h	anado el tipo Y	11 days ago
+limpia.c	Añado zconfig1 utilidad	25 days ago
+metaTabLee.c	anado el tipo Y	11 days ago
+metaTabBigote.c	anado el tipo Y	11 days ago
+metaTabGenera.c	anado el tipo Y	11 days ago
+
+### utilidad
+template2Include.c	branche template&json to master	20 days ago
+
+### programas externos utilizados
+cJSON.c	branche template&json to master	20 days ago
+cJSON.h	branche template&json to master	20 days ago
+mustach.c	branche template&json to master	20 days ago
+mustach.h	branche template&json to master	20 days ago
+
+### git
+.gitignore	Añado zconfig1 utilidad	25 days ago
+
+### documentacion
+Doxyfile	Añado zconfig1 utilidad	25 days ago
+README.md	Update README.md	28 minutes ago
+changelog.txt	anado el tipo Y	11 days ago
+
+### makefile
+makeLib	Añado zconfig1 utilidad	25 days ago
+makefile	branche template&json to master	20 days ago
+
+### plantillas
+makefileMain.template	branche template&json to master	20 days ago
+makefileTest.template	branche template&json to master	20 days ago
+metaTab2Json_c.template	branche template&json to master	20 days ago
+metaTabLee_c.template	anadida inicializacion en la lectura de lista	9 days ago
+metaTabParseJson_c.template	branche template&json to master	20 days ago
+metaTabTest_c.template	branche template&json to master	20 days ago
+
+
+..		
+test	anadida inicializacion en la lectura de lista	9 days ago
+cJSON_c.h	branche template&json to master	20 days ago
+cJSON_c.template	branche template&json to master	20 days ago
+cJSON_h.h	branche template&json to master	20 days ago
+cJSON_h.template	branche template&json to master	20 days ago
+doxygen_sqlite3.db	Añado zconfig1 utilidad	25 days ago
+leeme.txt	Añado zconfig1 utilidad	25 days ago
+makefileMain.h	branche template&json to master	20 days ago
+makefileTest.h	branche template&json to master	20 days ago
+metaTab2Json_c.h	branche template&json to master	20 days ago
+metaTabLee_c.h	anadida inicializacion en la lectura de lista	9 days ago
+metaTabLimpia.c	branche template&json to master	20 days ago
+metaTabParseJson_c.h	branche template&json to master	20 days ago
+metaTabTest_c.h	branche template&json to master	20 days ago
+metaTab_h.h	anado el tipo Y	11 days ago
+metaTab_h.template	anado el tipo Y	11 days ago
+template2Include	branche template&json to master	20 days ago
+
 
 
 ## Contenido
