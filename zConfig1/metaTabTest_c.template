@@ -42,7 +42,9 @@ if (ret<0)
     printf("Error de lectura del fichero <%s>\n","{%&titulo%}.json");
 
 {%&titulo%}_t {%&titulo%}1;
-{%&titulo%}ParseJson(jsonString, &{%&titulo%}1);
+memset({%&titulo%}1,0,sizeof({%&titulo%}_t));
+ret={%&titulo%}ParseJson(jsonString, &{%&titulo%}1);
+if (ret<0) printf("Error ParseJson <%s>\n",jsonString);
 // Muestra la lectura json
 printf("------------- tab print json parsed-------------------\n");
 {%&titulo%}Pinta(&{%&titulo%}1);
