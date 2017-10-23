@@ -4,12 +4,9 @@ Inicialmente concebido para linux y programado en C
 ## Contenido
 
 ### programa zconfig1
-`zconfig1.c`    - Programa Main de la utilidad.
-
-`metaTab.h`	    - Estructuras meta de las tablas meta
-
-`metaTab.c`	    - Funciones de lectura del contenido de una tabla meta
-
+`zconfig1.c`    - Programa Main de la utilidad.  
+`metaTab.h`	    - Estructuras meta de las tablas meta.  
+`metaTab.c`	    - Funciones de lectura del contenido de una tabla meta.  
 `metaTabAdd.h`,`metaTabAdd.c`  - Funciones Add para la generacion de las estructuras meta
 
 `metaTabLee.c`	- Funcion de lectura de una tabla meta hacia las estructuras meta
