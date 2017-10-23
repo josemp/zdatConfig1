@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <memory.h>
-
+#include "metaTab.h"
 #include "{%&titulo%}.h"
 
 main()
@@ -32,7 +32,7 @@ printf("Leidos <%d> registros\n",ret);
 
 // Genera Json
 printf("Generando Json\n");
-ret={%&titulo%}2Json("{%&titulo%}.json",&{%&titulo%});
+ret={%&titulo%}2JsonFile("{%&titulo%}.json",&{%&titulo%});
 
 // Parse Json
 printf("Parse JSON generado\n");
@@ -68,6 +68,49 @@ fclose(in);
 
 *template=buf;
 return(strlen(buf));
+
+}
+int creaFileMeta_{%&titulo%}(metaTab_t *metaTab,char *nameFile)
+{
+int i,j;
+itemCallBack_t *itemCallBack;
+itemLista_t *itemList;
+itemChar_t *itemChar;
+itemObjeto_t *itemObjeto;
+FILE *ou;
+ou=fopen(nameFile,"w");
+if (!ou) return(-1);
+for (i=0;i<metaTab->numItems;i++)
+{
+ if (metaTab->item[i].tipo=='C')
+   {
+     itemChar=(itemChar_t *)metaTab->item[i].data;
+     fprintf(ou,"%s:C:%s:%d\n",itemChar->nombre,itemChar->descri,itemChar->lenChar);
+   }
+
+ if (metaTab->item[i].tipo=='L')
+   {
+     itemList=(itemLista_t *)metaTab->item[i].data;
+     fprintf(ou,"%s:L:%s:%d:%d\n",itemList->nombre,itemList->descri,itemList->lenLista,itemList->lenChar);
+   }
+ if (metaTab->item[i].tipo=='Y')
+   {
+     itemCallBack=(itemCallBack_t *)metaTab->item[i].data;
+     fprintf(ou,"%s:Y:%s:%s\n",itemCallBack->nombre,itemCallBack->descri,itemCallBack->tipo);
+   }
+ if (metaTab->item[i].tipo=='O')
+   {
+     itemObjeto=(itemObjeto_t *)metaTab->item[i].data;
+     fprintf(ou,"%s:O:%s",itemObjeto->nombre,itemObjeto->descri);
+     for(j=0;j<itemObjeto->numItems;j++)
+      {
+       fprintf(ou,":%s:%s:%d",itemObjeto->item[j].nombre,itemObjeto->item[j].descri,itemObjeto->item[j].lenChar);
+      }
+    fprintf(ou,"\n");
+   }
+fclose(ou);
+return(0);
+}
 
 }
 

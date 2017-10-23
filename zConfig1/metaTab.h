@@ -23,6 +23,16 @@ typedef struct
 }itemObjeto_t;
 
 
+/* Esta estructura es para la descripcion de un meta */
+
+typedef struct
+{
+ char *descri;
+ char *tipo;
+ int lenChar;
+ int lenLista;
+}itemMeta_t;
+
 // definira una linea en la estructura de tipo : tipo (*nombre)()
 // por ejemplo int (* cbProceso)();
 //cbProceso:Y:callback de proceso:int
@@ -45,24 +55,20 @@ typedef struct
 } metaTabItem_t;
 typedef struct
 {
+ char titulo[100+1];
  int numItems; 
  metaTabItem_t *item;
 } metaTab_t;
 
-metaTab_t *leeMetaTab(char *file);
-
-int addItemObjeto(itemObjeto_t *objeto,char *label,char *descri,int len);
-int addItemCharMetaTab(metaTab_t *tabla,char *label,char *descri,int len);
-int addItemListMetaTab(metaTab_t *tabla,char *label,char *descri,int lenLista,int lenChar);
-int addItemTipoMetaTab(metaTab_t *tabla,char *label,char *descri,char *tipo);
-int addItemObjMetaTab(metaTab_t *tabla,itemObjeto_t **objeto);
 char *getNombreItemTabla(metaTab_t *tabla,int itemTabla);
+char *getDescriItemTabla(metaTab_t *tabla,int itemTabla);
 int  getLenCharItemTabla(metaTab_t *tabla,int itemTabla);
 int  getLenListaItemTabla(metaTab_t *tabla,int itemTabla);
 char *getNombreItemObjeto(metaTab_t *tabla,int itemTabla,int numItemObjeto);
+char *getDescriItemObjeto(metaTab_t *tabla,int itemTabla,int numItemObjeto);
 int getLenCharItemObjeto(metaTab_t *tabla,int itemTabla,int numItemObjeto);
 int  getNumItemsObjeto(metaTab_t *tabla,int itemTabla);
 char *getTipoItemCallBack(metaTab_t *tabla,int itemTabla);
-
+int getMeta(metaTab_t *metaTab,char *label,char *labelItem,itemMeta_t *itemMeta);
 
 

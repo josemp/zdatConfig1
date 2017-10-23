@@ -1,15 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "metaTab.h"
+#include "metaTabAdd.h"
 #include "metaTabLee_c.h"   
-#include "metaTab_h.h"
+#include "metaTabTabla_h.h"
 #include "metaTabTest_c.h" 
 #include "makefileMain.h" 
 #include "makefileTest.h"  
 #include "metaTab2Json_c.h"  
 #include "metaTabParseJson_c.h"
+#include "metaTabCargaMeta_c.h"
+#include "metaTabGetKeys_c.h"
 #include "cJSON_c.h"
 #include "cJSON_h.h"
+#include "metaTab_h.h"
+#include "metaTab_c.h"
 main(int argc,char **argv)
 {
 char nombreMeta[200];
@@ -38,13 +43,15 @@ if (argc>2)
    {
      if (argc<5)
        {printf("zconfig1 -f file.template file.out\n");return;}
+     printf ("----------> <%s><%s>\n",argv[3],argv[4]);
      ret=templateFile2File(nombre,metaTab,argv[3],argv[4]);
     if (ret!=0) printf("algo no fue buen\n");
+     printf ("----------> <%s><%s>\n",argv[3],argv[4]);
      return;
    }
  if (strcmp(argv[2],"-t")==0)
    {
-      // ret=templateBuf2File(nombre, metaTab, nameTabIncludeTemplate,"hostias.final");
+      ret=templateBuf2File(nombre, metaTab, metaTabCargaMeta_c,"hostias.final");
     if (ret!=0) printf("algo no fue buen\n");
      return;
    }
@@ -55,11 +62,11 @@ printf("Generando Tabla <%s.tab>\n",nombre);
 ret=generaTabla(nombre,metaTab );
 if (ret<0) {printf("imposible abrir para escritura %s.tab\n",nombre);return;}
 
-// Genera Include (template en  metaTab_h.h)
+// Genera Include (template en  metaTabTabla_h.h)
 
 sprintf(fileOut,"%s.h",nombre);
 printf("Generando Tabla <%s>\n",fileOut);
-ret=templateBuf2File(nombre, metaTab,metaTab_h ,fileOut);
+ret=templateBuf2File(nombre, metaTab,metaTabTabla_h ,fileOut);
     if (ret!=0) {printf("imposible generar <%s>\n",fileOut);return;}
 
 // Generaion del programa de lectura #include "metaTabLee_c.h"   
@@ -67,6 +74,13 @@ ret=templateBuf2File(nombre, metaTab,metaTab_h ,fileOut);
 sprintf(fileOut,"%sLee.c",nombre);
 printf("Generando Tabla <%s>\n",fileOut);
 ret=templateBuf2File(nombre, metaTab,metaTabLee_c ,fileOut);
+    if (ret!=0) {printf("imposible generar <%s>\n",fileOut);return;}
+
+// Generaion del programa de carga meta #include "metaTabCargaMeta_c.h"   
+
+sprintf(fileOut,"%sCargaMeta.c",nombre);
+printf("Generando Tabla <%s>\n",fileOut);
+ret=templateBuf2File(nombre, metaTab,metaTabCargaMeta_c ,fileOut);
     if (ret!=0) {printf("imposible generar <%s>\n",fileOut);return;}
 
 // Generacion de lista
@@ -125,4 +139,22 @@ printf("generando cJSON.h\n");
 ou=fopen("cJSON.h","w");
 fprintf(ou,"%s",cJSON_h);
 fclose(ou);
+
+// Generando metaTab.h 
+printf("generando metaTab.h\n");
+ou=fopen("metaTab.h","w");
+fprintf(ou,"%s",metaTab_h);
+fclose(ou);
+
+// Generando metaTab.c
+printf("generando metaTab.c\n");
+ou=fopen("metaTab.c","w");
+fprintf(ou,"%s",metaTab_c);
+fclose(ou);
+
+// Generando metaTabGetKeys.c
+sprintf(fileOut,"%sGetKeys.c",nombre);
+printf("generando %s\n",fileOut);
+ret=templateBuf2File(nombre, metaTab,metaTabGetKeys_c ,fileOut);
+    if (ret!=0) {printf("imposible generar <%s>\n",fileOut);return;}
 }

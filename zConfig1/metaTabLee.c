@@ -155,6 +155,7 @@ char *resto;
                objeto=malloc(sizeof(itemObjeto_t));
                objeto->numItems=0;
                      strcpy(objeto->nombre,label);
+                     strcpy(objeto->descri,sdescri);
                hayItems=1;
              }
                 addItemObjeto(objeto,label1,sdescriI,atoi(slen));

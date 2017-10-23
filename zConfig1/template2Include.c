@@ -1,3 +1,8 @@
+/* Este programa tiene un fichero de texto como entrada */
+/* Como salida tiene un fichero include .h , donde el ficher de texto de entrada se guarda como un char buf[]="  " */
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

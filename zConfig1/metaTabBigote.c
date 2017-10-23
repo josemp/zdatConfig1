@@ -1,3 +1,9 @@
+/* Anado el campo numItems */
+/* Anado los descri tanto de char list objetos y objetos.item */
+/* Anado seccion firstObjeto */
+/* Anado seccion first */
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,7 +12,8 @@
 /* campos mustach
 
    &titulo : titulo de la tabla
-
+   &numItems : numero de items del objeto
+    
    #ignore: ignora esta seccion
 
    #tabla : seccion de recorrer toda la tabla
@@ -24,6 +31,7 @@
      &lenList : longitud de la lista
 
     #object : datos de tipo object, solo uno
+       &numItemsObjeto : numero de items del objeto
      #itemObjeto : seccion de items de objeto, recorre los items
        &itemObjeto.name : nombre de item objeto
        &itemObjeto.len : len de item objeto
@@ -32,14 +40,14 @@
 // Secciones
 
 typedef enum
-{seccionNone,seccionTabla,seccionTipo,seccionItemObjeto} seccionEnum_t;
+{seccionNone,seccionTabla,seccionTipo,seccionItemObjeto,seccionFirstObjeto,seccionFirst} seccionEnum_t;
 char *seccionDescri[]={
-"seccionNone","seccionTabla","seccionTipo","seccionItemObjeto"
+"seccionNone","seccionTabla","seccionTipo","seccionItemObjeto","seccionFirstObjeto","seccionFirst"
 };
 
 printSeccionDescri(seccionEnum_t seccion)
 {
- if (seccion<0 || seccion>seccionItemObjeto) {printf("seccion <%d>no valida\n",seccion);fflush(stdout);}
+ if (seccion<0 || seccion>seccionFirst) {printf("seccion <%d>no valida\n",seccion);fflush(stdout);}
 else
  printf("seccion <%d><%s>\n",seccion,seccionDescri[seccion]);fflush(stdout);
 }
@@ -75,14 +83,21 @@ return(0);
 int put(void *closure, const char *name, int escape, FILE *file)
 {
 tablaInfo_t *tablaInfo= (tablaInfo_t *) closure;
-
+//printf("put <%s>\n",name);
 if (strcmp(name,"titulo")==0)
     {fprintf(file,"%s",tablaInfo->titulo);return(0);}
-
+if (strcmp(name,"numItems")==0)
+    {fprintf(file,"%d",tablaInfo->tabla->numItems);return(0);}
 if (strcmp(name,"tipoCB")==0)
 {
    char *tipo= getTipoItemCallBack(tablaInfo->tabla,tablaInfo->itemTabla);
     fprintf(file,"%s",tipo);
+    return(0);
+}
+if (strcmp(name,"descri")==0)
+{
+    char *nombre= getDescriItemTabla(tablaInfo->tabla,tablaInfo->itemTabla);
+    fprintf(file,"%s",nombre);
     return(0);
 }
 if (strcmp(name,"name")==0)
@@ -103,9 +118,21 @@ if (strcmp(name,"lenLista")==0)
     fprintf(file,"%d",len);
     return(0);
 }
+if (strcmp(name,"numItemsObjeto")==0)
+{
+ int numItems=getNumItemsObjeto(tablaInfo->tabla,tablaInfo->itemTabla);
+    fprintf(file,"%d",numItems);
+    return(0);
+}
 if (strcmp(name,"itemObjeto.name")==0)
 {
    char *nombre= getNombreItemObjeto(tablaInfo->tabla,tablaInfo->itemTabla,tablaInfo->itemObjeto);
+    fprintf(file,"%s",nombre);
+    return(0);
+}
+if (strcmp(name,"itemObjeto.descri")==0)
+{
+   char *nombre= getDescriItemObjeto(tablaInfo->tabla,tablaInfo->itemTabla,tablaInfo->itemObjeto);
     fprintf(file,"%s",nombre);
     return(0);
 }
@@ -123,16 +150,38 @@ return(0);
 // return(1) continua con la seccion
 int enter(void *closure, const char *name)
 {
-//printf("Seccion <%s>\n",name);
 tablaInfo_t *tablaInfo= (tablaInfo_t *) closure;
+//printf("Seccion <%s><%s>\n",name, seccionDescri[tablaInfo->seccion]);
 if (strcmp(name,"ignore")==0)
   return(0);
+if (strcmp(name,"firstObjeto")==0)
+{
+ if (tablaInfo->seccion== seccionItemObjeto && 
+     tablaInfo->tabla->item[tablaInfo->itemTabla].tipo=='O' &&
+    tablaInfo->itemObjeto==0)   
+    { 
+      tablaInfo->seccion=seccionFirstObjeto;
+      return(1);
+    }// continua
+ return(0);// ignora esta seccion
+}
+if (strcmp(name,"first")==0)
+{
+    if (tablaInfo->seccion==seccionTabla &&
+        tablaInfo->itemTabla==0)   
+    { 
+      tablaInfo->seccion=seccionFirst;
+      return(1);
+    }// continua
+ return(0);// ignora esta seccion
+}
 if (strcmp(name,"tabla")==0)
 {
  tablaInfo->seccion=seccionTabla;
  tablaInfo->itemTabla=0;
  return(1);
 }
+
 if (strcmp(name,"char")==0)
 {
  if (tablaInfo->tabla->item[tablaInfo->itemTabla].tipo=='C')   
@@ -169,7 +218,16 @@ return(0);
 int next(void *closure)
 {
 tablaInfo_t *tablaInfo= (tablaInfo_t *) closure;
+//printf("Entro en next <%s> \n",seccionDescri[tablaInfo->seccion]);
 // Item de tabla
+if (tablaInfo->seccion==seccionFirstObjeto)
+{
+  return(0);//fin
+}
+if (tablaInfo->seccion==seccionFirst)
+{
+  return(0);//fin
+}
 if (tablaInfo->seccion==seccionTabla)
   {
    tablaInfo->itemTabla++;
@@ -199,6 +257,17 @@ return(0);
 int leave(void *closure)
 {
 tablaInfo_t *tablaInfo= (tablaInfo_t *) closure;
+//printf("Entro en leave <%s>\n",seccionDescri[tablaInfo->seccion]);
+if (tablaInfo->seccion==seccionFirstObjeto)
+{
+  tablaInfo->seccion=seccionItemObjeto;
+  return;//fin
+}
+if (tablaInfo->seccion==seccionFirst)
+{
+  tablaInfo->seccion=seccionTabla;
+  return;//fin
+}
 tablaInfo->seccion--;
 }
 
@@ -215,13 +284,11 @@ bigote.next=next;
 bigote.leave=leave;
 
 // Set closure 
-
+//printf("template <<<<<<%s>>>>>>>\n",template);
 tablaInfo_t tablaInfo;
 tablaInfo.tabla=meta;
 tablaInfo.titulo=titulo;
 ret=mustach(template, &bigote, &tablaInfo, resultado, size);
 if (ret!=0) printf("mustach error <%d>\n",ret);
 return(ret); // solo 0 es bueno
-
-
 }

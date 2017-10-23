@@ -1,100 +1,39 @@
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "metaTab.h"
 
-
-
-
-addItemObjeto(itemObjeto_t *objeto,char *label,char *descri,int len)
+char *getDescriItemTabla(metaTab_t *tabla,int itemTabla)
 {
-  int numItem=objeto->numItems;
-  if (objeto->numItems==0)
-  objeto->item=malloc(sizeof(itemChar_t));
-  else
-  objeto->item=realloc(objeto->item,(numItem+1)*sizeof(itemChar_t));
-  itemChar_t item;
-  strcpy(item.nombre,label);
-  item.lenChar=len;
-  strcpy(item.descri,descri);
-  objeto->item[numItem]=item;
-  objeto->numItems++;
-}
-int addItemCallBackMetaTab(metaTab_t *tabla,char *label,char *descri,char *tipo)
-{
-metaTabItem_t tabItem;
-tabItem.tipo='Y';
-itemCallBack_t *itemCallBack;
-itemCallBack=malloc(sizeof(itemCallBack_t));
-strcpy(itemCallBack->nombre,label);
-strcpy(itemCallBack->descri,descri);
-strcpy(itemCallBack->tipo,tipo);
-tabItem.data=itemCallBack;
-
- if (tabla->numItems==0)
- tabla->item=malloc(sizeof(metaTabItem_t));
- else
- tabla->item=realloc(tabla->item,(tabla->numItems+1)*sizeof(metaTabItem_t));
-
- tabla->item[tabla->numItems]=tabItem;
- tabla->numItems++;
 
 
-
-
-
-}
-addItemCharMetaTab(metaTab_t *tabla,char *label,char *descri,int len)
-{
- metaTabItem_t tabItem;
- tabItem.tipo='C';
- itemChar_t *itemChar;
- itemChar=malloc(sizeof(itemChar_t));
- strcpy(itemChar->nombre,label);
- strcpy(itemChar->descri,descri);
- itemChar->lenChar=len;
- tabItem.data=itemChar;
- if (tabla->numItems==0)
- tabla->item=malloc(sizeof(metaTabItem_t));
- else
- tabla->item=realloc(tabla->item,(tabla->numItems+1)*sizeof(metaTabItem_t));
-
- tabla->item[tabla->numItems]=tabItem;
- tabla->numItems++;
-
-}
-addItemListMetaTab(metaTab_t *tabla,char *label,char *descri,int lenLista,int lenChar)
-{
- metaTabItem_t tabItem;
- tabItem.tipo='L';
- itemLista_t *itemLista;
- itemLista=malloc(sizeof(itemLista_t));
- strcpy(itemLista->nombre,label);
- strcpy(itemLista->descri,descri);
- itemLista->lenChar=lenChar;
- itemLista->lenLista=lenLista;
- tabItem.data=itemLista;
- if (tabla->numItems==0)
- tabla->item=malloc(sizeof(metaTabItem_t));
- else
- tabla->item=realloc(tabla->item,(tabla->numItems+1)*sizeof(metaTabItem_t));
-
- tabla->item[tabla->numItems]=tabItem;
- tabla->numItems++;
-
-}
-addItemObjMetaTab(metaTab_t *tabla,itemObjeto_t **objeto)
-{
- metaTabItem_t tabItem;
- tabItem.tipo='O';
- tabItem.data=*objeto;
- if (tabla->numItems==0)
- tabla->item=malloc(sizeof(metaTabItem_t));
- else
- tabla->item=realloc(tabla->item,(tabla->numItems+1)*sizeof(metaTabItem_t));
- tabla->item[tabla->numItems]=tabItem;
- tabla->numItems++;
-
+ if (itemTabla >= tabla->numItems)
+   return(NULL);
+ if (itemTabla< 0)
+   return(NULL);
+ if (tabla->item[itemTabla].tipo=='C')
+   {
+    itemChar_t *itemChar = (itemChar_t *) tabla->item[itemTabla].data;
+    return(itemChar->descri);
+   }
+ if (tabla->item[itemTabla].tipo=='L')
+   {
+    itemLista_t *itemLista = (itemLista_t *) tabla->item[itemTabla].data;
+    return(itemLista->descri);
+   }
+ if (tabla->item[itemTabla].tipo=='O')
+   {
+    itemObjeto_t  *itemObjeto = (itemObjeto_t *) tabla->item[itemTabla].data;
+    return(itemObjeto->descri);
+   }
+ if (tabla->item[itemTabla].tipo=='Y')
+   {
+    itemCallBack_t  *itemCallBack = (itemCallBack_t *) tabla->item[itemTabla].data;
+    return(itemCallBack->descri);
+   }
+return(NULL);
 }
 
 char *getNombreItemTabla(metaTab_t *tabla,int itemTabla)
@@ -201,6 +140,30 @@ char *getNombreItemObjeto(metaTab_t *tabla,int itemTabla,int numItemObjeto)
     return(itemObjeto->item[numItemObjeto].nombre);
 }
 
+char *getDescriItemObjeto(metaTab_t *tabla,int itemTabla,int numItemObjeto)
+{
+
+ if (itemTabla >= tabla->numItems)
+   return(NULL);
+
+ if (itemTabla< 0)
+   return(NULL);
+
+ if (tabla->item[itemTabla].tipo!='O')
+    return(NULL);
+
+
+// Solo quedan objetos
+
+    itemObjeto_t  *itemObjeto = (itemObjeto_t *) tabla->item[itemTabla].data;
+    
+    if ( numItemObjeto >= itemObjeto->numItems)
+      return(NULL);
+    if (numItemObjeto <0) return(NULL);
+    
+    return(itemObjeto->item[numItemObjeto].descri);
+}
+
 
 int getLenCharItemObjeto(metaTab_t *tabla,int itemTabla,int numItemObjeto)
 {
@@ -245,3 +208,78 @@ int  getNumItemsObjeto(metaTab_t *tabla,int itemTabla)
     
     return(itemObjeto->numItems);
 }
+
+
+/* Saca los datos significativos de un meta */
+/* el itemMeta ha de estar ya asignado */
+int getMeta(metaTab_t *metaTab,char *label,char *labelItem,itemMeta_t *itemMeta)
+{
+itemLista_t *itemLista;
+itemChar_t  *itemChar;
+itemObjeto_t *itemObjeto;
+itemCallBack_t *itemCallBack;
+int i,j;
+memset(itemMeta,0,sizeof(itemMeta_t));
+
+for (i=0;i<metaTab->numItems;i++)
+{
+ if (strlen(labelItem)==0)
+   { // no es objeto
+      if(metaTab->item[i].tipo=='C')
+        {
+         itemChar = metaTab->item[i].data;
+         if (strcmp(label,itemChar->nombre)==0)
+            {
+             itemMeta->descri=itemChar->descri;
+             itemMeta->lenChar=itemChar->lenChar;
+             return(0);
+            }
+        }
+      if(metaTab->item[i].tipo=='L')
+        {
+         itemLista = metaTab->item[i].data;
+         if (strcmp(label,itemLista->nombre)==0)
+            {
+             itemMeta->descri=itemLista->descri;
+             itemMeta->lenChar=itemLista->lenChar;
+             itemMeta->lenLista=itemLista->lenLista;
+             return(0);
+            }
+        }
+      if(metaTab->item[i].tipo=='Y')
+        {
+         itemCallBack = metaTab->item[i].data;
+         if (strcmp(label,itemCallBack->nombre)==0)
+            {
+             itemMeta->descri=itemCallBack->descri;
+             itemMeta->tipo=itemCallBack->tipo;
+             return(0);
+            }
+        }
+   }
+  else
+  {
+      if(metaTab->item[i].tipo=='O')
+       {
+        itemObjeto=metaTab->item[i].data;
+        if (strcmp(label,itemObjeto->nombre)==0)
+         {
+           for(j=0;j<itemObjeto->numItems;j++)
+            {
+             if (strcmp(itemObjeto->item[j].nombre,labelItem)==0)
+               {
+                 itemMeta->descri = itemObjeto->item[j].descri;
+                 itemMeta->lenChar=itemObjeto->item[j].lenChar;
+                 return(0);
+               }
+            }
+         }
+       }
+
+  }
+
+}
+return(-1);
+
+}
+
