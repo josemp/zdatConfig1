@@ -43,7 +43,8 @@ NOTA. La API también gestiona LISTAS : ficheros con lineas que cumplen la espec
 `cJSON_h.template`	          - Template para generar cJSON.h en el API de la tabla generada.  
 ### utilidad
 `template2Include.c`	- Programa para generar includes de ficheros.  
-Los ficheros que genera la utilidad zconfig1, se almacenan en un buffer en un include del programa, y cuando se ejecuta la utilidad se l
+Los ficheros que genera la utilidad zconfig1, se almacenan en un buffer en un include del programa, y cuando se ejecuta la utilidad zconfig1, se graban en un fichero.
+
 
 ### programas externos utilizados
 https://github.com/DaveGamble/cJSON
