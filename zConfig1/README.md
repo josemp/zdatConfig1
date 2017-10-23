@@ -25,25 +25,27 @@ Inicialmente concebido para linux y programado en C
 `cJSON_c.template`            - Template para generar cJSON.c en el API de la tabla generada.  
 `cJSON_h.template`	          - Template para generar cJSON.h en el API de la tabla generada.  
 ### utilidad
-template2Include.c	branche template&json to master	20 days ago
+`template2Include.c`	- Programa para generar includes de ficheros.
 
 ### programas externos utilizados
-cJSON.c	branche template&json to master	20 days ago
-cJSON.h	branche template&json to master	20 days ago
-mustach.c	branche template&json to master	20 days ago
-mustach.h	branche template&json to master	20 days ago
+`cJSON.c`	
+`cJSON.h`	
+
+https://gitlab.com/jobol/mustach  
+`mustach.c`	 
+`mustach.h`	 
 
 ### git
-.gitignore	Añado zconfig1 utilidad	25 days ago
+.gitignore	
 
 ### documentacion
-Doxyfile	Añado zconfig1 utilidad	25 days ago
-README.md	Update README.md	28 minutes ago
-changelog.txt	anado el tipo Y	11 days ago
+Doxyfile	
+README.md	 
+changelog.txt	 
 
 ### makefile
-makeLib	Añado zconfig1 utilidad	25 days ago
-makefile	branche template&json to master	20 days ago
+makeLib	
+makefile	
 
 
 
