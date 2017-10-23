@@ -12,18 +12,18 @@ Inicialmente concebido para linux y programado en C
 `limpia.c`	    - Funciones auxiliares de buffers.  
 `metaTabBigote.c`	- Funcion de lectura de templates y generacion basado en las estructuras meta leidas del fichero meta.  
 `metaTabGenera.c`	- Funcion de generacion de distintos tipos de ficheros, amenudo utilizando templates y mustach.  
-### plantillas
-makefileMain.template
-makefileTest.template	
-metaTab2Json_c.template	
-metaTabLee_c.template	
-metaTabParseJson_c.template	
-metaTabTest_c.template	
-metaTabCargaMeta_c.template
-metaTabGetKeys_c.template
-cJSON_c.template
-cJSON_h.template	
 
+### plantillas
+`makefileMain.template`       - Generación del makefile principal de la tabla generada.  
+`makefileTest.template`       - Generación del makefile TEST del  de la tabla generada.  
+`metaTab2Json_c.template`	    - Generación del programa de generación de Json de la tabla.  
+`metaTabLee_c.template`       - Generación del programa de lectura de la tabla.  
+`metaTabParseJson_c.template` - Generación del programa de lectura del Json de la tabla -> estructura.  
+`metaTabTest_c.template`	    - Generacion del programa de Test de la tabla generada.  
+`metaTabCargaMeta_c.template` - Generación del programa.  
+`metaTabGetKeys_c.template`   - Gemeracion de la Carga (en forma de inicialización) de la estructura meta de la tabla.  
+`cJSON_c.template`            - Template para generar cJSON.c en el API de la tabla generada.  
+`cJSON_h.template`	          - Template para generar cJSON.h en el API de la tabla generada.  
 ### utilidad
 template2Include.c	branche template&json to master	20 days ago
 
