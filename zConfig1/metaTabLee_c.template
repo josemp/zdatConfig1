@@ -121,7 +121,7 @@ char buf[20001];
 int numItems=0;
 char *pun,*pun1,*resto,*campo,*label;
 
-memset(&{%&titulo%},0,sizeof({%&titulo%}_t));
+memset({%&titulo%},0,sizeof({%&titulo%}_t));
 
 FILE *in = fopen(nombreFichero,"r");
 if (!in) return(-1);
