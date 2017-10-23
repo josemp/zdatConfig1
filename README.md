@@ -25,7 +25,7 @@ Trata de tipo de ficheros que llamo **ZCONF1** pensados para configuración. Su 
 [Ejemplo generado con la utilidad zConf1 ZCONF1][ZCONF1]
 
 # ¿Que puedes conseguir con este proyecto?
-Mediante la construcción de un [fichero de texto meta][META_ZCONF1] que describe un [fichero de texto de tipo configuración][TAB_ZCONF1] mediante la [utilidad zconf1][ZCONF1] generamos un API (C LIBRARY) personalizada para [el tipo de fichero diseñado][EXAMPLE_ZCONF1] 
+Este proyecto contiene los fuentes de una utilidad llamada [zconf1][ZCONF1], mediante la cual, construyendo un [fichero de texto meta][META_ZCONF1] que describe un [fichero de texto de tipo configuración][TAB_ZCONF1] generamos un API (C LIBRARY) personalizada para [el tipo de fichero diseñado][EXAMPLE_ZCONF1] 
 
 
 [TAB_ZCONF1]: zdatConfig1Tab/readme.md "Descripción del formato de ficheros ZCONF1"
