@@ -200,7 +200,7 @@ if (!resto) continue;
 if (numItems==0) *{%&titulo%}Lista=malloc(sizeof({%&titulo%}_t));
 else *{%&titulo%}Lista=realloc(*{%&titulo%}Lista,(numItems+1)*sizeof({%&titulo%}_t));
 (*{%&titulo%}Lista)[numItems]=*{%&titulo%};
-memset(&{%&titulo%},0,sizeof({%&titulo%}_t));
+memset({%&titulo%},0,sizeof({%&titulo%}_t));
 numItems++;
 continue;
 }
