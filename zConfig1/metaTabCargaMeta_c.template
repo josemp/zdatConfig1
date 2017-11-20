@@ -39,7 +39,7 @@ metaTabItem_t metaTabItem_{%&titulo%}[]={
 };
 
 metaTab_t metaTab_{%&titulo%}={
-"{%&titulo%}",{%&numItems%},metaTabItem_{%&titulo%} };
+"{%&titulo%}","{%&descriTab%}",{%&numItems%},metaTabItem_{%&titulo%} };
 
 
 

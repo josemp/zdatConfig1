@@ -227,6 +227,33 @@ printf("{%&name%} = %s\n",{%&titulo%}->{%&name%});{%/char%}{%#object%}{%#itemObj
 printf("{%&name%}.{%&itemObjeto.name%} = %s\n",{%&titulo%}->{%&name%}.{%&itemObjeto.name%});{%/itemObjeto%}{%/object%}{%/tabla%}
 }
 
+
+int {%&titulo%}Write({%&titulo%}_t *{%&titulo%}, char *nameFile)
+{
+int i;
+FILE *ou=fopen(nameFile,"w");
+if (ou ==NULL) return(-1);{%#tabla%}{%#list%}
+fprintf(ou,"\n# {%&descri%}[{%&lenLista%}]\n");
+fprintf(ou,"{%&name%}");
+for (i=0;i<{%&lenLista%};i++)
+  fprintf(ou,":%s",{%&titulo%}->{%&name%}[i]);
+fprintf(ou,"\n");{%/list%}{%#char%}
+fprintf(ou,"\n# {%&descri%}\n");
+fprintf(ou,"{%&name%}:%s\n",{%&titulo%}->{%&name%});{%/char%}
+{%#object%}
+fprintf(ou,"\n# {%&descri%}");
+{%#itemObjeto%}
+fprintf(ou,":{%&itemObjeto.descri%}");{%/itemObjeto%}fprintf(ou,"\n");{%/object%}
+
+
+{%#object%}
+fprintf(ou,"{%&name%}");
+{%#itemObjeto%}
+fprintf(ou,":%s",{%&titulo%}->{%&name%}.{%&itemObjeto.name%});{%/itemObjeto%}fprintf(ou,"\n");{%/object%}
+{%/tabla%}
+return(0);
+}
+
 // Limpieza de buffer personalizado
 {%&titulo%}LimpiaBuf(char *buf)
 {

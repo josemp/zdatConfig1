@@ -56,6 +56,7 @@ typedef struct
 typedef struct
 {
  char titulo[100+1];
+ char descri[200+1];
  int numItems; 
  metaTabItem_t *item;
 } metaTab_t;

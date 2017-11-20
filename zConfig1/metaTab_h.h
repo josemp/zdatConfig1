@@ -57,6 +57,7 @@ char *metaTab_h =
 "typedef struct\n"
 "{\n"
 " char titulo[100+1];\n"
+" char descri[200+1];\n"
 " int numItems; \n"
 " metaTabItem_t *item;\n"
 "} metaTab_t;\n"

@@ -12,6 +12,7 @@
 /* campos mustach
 
    &titulo : titulo de la tabla
+   &descriTab : descripcion de la tabla
    &numItems : numero de items del objeto
     
    #ignore: ignora esta seccion
@@ -86,6 +87,8 @@ tablaInfo_t *tablaInfo= (tablaInfo_t *) closure;
 //printf("put <%s>\n",name);
 if (strcmp(name,"titulo")==0)
     {fprintf(file,"%s",tablaInfo->titulo);return(0);}
+if (strcmp(name,"descriTab")==0)
+    {fprintf(file,"%s",tablaInfo->tabla->descri);return(0);}
 if (strcmp(name,"numItems")==0)
     {fprintf(file,"%d",tablaInfo->tabla->numItems);return(0);}
 if (strcmp(name,"tipoCB")==0)

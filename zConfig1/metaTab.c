@@ -264,12 +264,19 @@ for (i=0;i<metaTab->numItems;i++)
         itemObjeto=metaTab->item[i].data;
         if (strcmp(label,itemObjeto->nombre)==0)
          {
+           if (strlen(labelItem)==0)
+               {
+                 itemMeta->descri=itemObjeto->descri;
+                 itemMeta->lenLista=itemObjeto->numItems;
+                 return(0);
+               }
            for(j=0;j<itemObjeto->numItems;j++)
             {
              if (strcmp(itemObjeto->item[j].nombre,labelItem)==0)
                {
                  itemMeta->descri = itemObjeto->item[j].descri;
                  itemMeta->lenChar=itemObjeto->item[j].lenChar;
+                 itemMeta->descri=itemLista->descri;
                  return(0);
                }
             }

@@ -3,6 +3,8 @@
 #include <string.h>
 #include <memory.h>
 #include "metaTab.h"
+// El titulo no está en este fichero
+// Pero la descripcion si que esta en el comentario #descripcionTab:
 //label:tipo:...           
 // tipo Char
 // label:C:len
@@ -39,6 +41,10 @@ char *resto;
    if (strlen(buf)<2) continue;
    buf[strlen(buf)-1]=0;
    Conf1LimpiaBuf(buf);
+
+// Comentario de descripcion
+   if (strncmp(buf,"#descripcionTab:",16)==0)
+     sprintf(metaTab.descri,"%.200s",buf+16);
 // comentario
    if (buf[0]=='#') continue;
 // busca ":" para el label.
