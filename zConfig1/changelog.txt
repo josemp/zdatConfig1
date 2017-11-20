@@ -1,3 +1,19 @@
+lun nov 20 13:37:53 CET 2017
+metaTab.c
+- Añado campo descri a metaTab_t (que se pondra en la tabla como #descripcionTab:xxxxx)
+- Añado en getMeta que si el label es objeto y labelItem es nulo, devuelve el itemMeta del objeto
+
+metaTabBigote.c
+- Añado el campo descriTab correspondiente a l campo descri de metaTab_t
+metaTabCargaMeta_c.template
+
+metaTabLee.c
+- leo el campo #descripcionTab:xxxx
+
+metaTabLee_c.template
+- creo la funcion nameWrite() que escribe la tabla en un fichero
+
+
 jue oct 12 08:22:36 CEST 2017
 Añado el tipo Y que es un callback del tipo  tipo (*etiqueta)();
 Simplemente lo añado a la estructura en principio
