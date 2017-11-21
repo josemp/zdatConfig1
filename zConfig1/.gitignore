@@ -3,6 +3,7 @@ html
 /*.o
 /*.a
 /zconfig1
+/template2include
 /metaTabCargaMeta_c.h
 /metaTabGetKeys_c.h
 /metaTabTabla_h.h

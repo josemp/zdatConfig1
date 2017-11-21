@@ -48,7 +48,7 @@ metaTab_c.template: metaTab.c
 $(OBJETOS): $(PROGRAMA_MAIN:%=%.c) $(OTRAS_FUENTES) $(INCLUDES) $(INCLUDES_TEMPLATE)
 $(PROGRAMA_MAIN): $(OBJETOS) 
 clean:
-	- rm -f $(OBJETOS) $(PROGRAMA_MAIN) utilBufTemplate $(INCLUDES_TEMPLATE) metaTab_h.template metaTab_c.template
+	- rm -f $(OBJETOS) $(PROGRAMA_MAIN) template2Include $(INCLUDES_TEMPLATE) metaTab_h.template metaTab_c.template 
 limpia:
 	- rm -f $(OBJETOS)   $(INCLUDES_TEMPLATE)
 
