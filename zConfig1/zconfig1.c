@@ -11,6 +11,7 @@
 #include "metaTabParseJson_c.h"
 #include "metaTabCargaMeta_c.h"
 #include "metaTabGetKeys_c.h"
+#include "metaTabAppHttp_c.h"
 #include "cJSON_c.h"
 #include "cJSON_h.h"
 #include "metaTab_h.h"
@@ -156,5 +157,11 @@ fclose(ou);
 sprintf(fileOut,"%sGetKeys.c",nombre);
 printf("generando %s\n",fileOut);
 ret=templateBuf2File(nombre, metaTab,metaTabGetKeys_c ,fileOut);
+    if (ret!=0) {printf("imposible generar <%s>\n",fileOut);return;}
+
+// Generando metaTabAppHttp.c
+sprintf(fileOut,"%sAppHttp.c",nombre);
+printf("generando %s\n",fileOut);
+ret=templateBuf2File(nombre, metaTab,metaTabAppHttp_c ,fileOut);
     if (ret!=0) {printf("imposible generar <%s>\n",fileOut);return;}
 }

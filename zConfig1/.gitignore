@@ -10,4 +10,5 @@ html
 /metaTab_c.h
 /metaTab_c.template
 /metaTab_h.template
+/metaTabAppHttp_c.h
 
