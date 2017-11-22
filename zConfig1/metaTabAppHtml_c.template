@@ -1,0 +1,78 @@
+{{={% %}=}}
+// prefix {%&titulo%}AppHtml
+
+// Intefaz de programa para modulos 0 de zHttpServer
+// Este programa no se añade a la compilacion y no se testea
+
+// NECESITA una funcion externa : {%&titulo}AppHtml(connection,data);
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <memory.h>
+#include </usr/local/include/microhttpd.h>
+#include "spaServer.h"
+
+#include "{%&titulo%}.h"
+
+// Evento de datos de la peticion HTTP
+
+int {%&titulo}AppHtmlDataCB({%&titulo%}_t *data, char *key, char *value)
+{
+// appLoginData_t *data = (appLoginData_t *) dataCls;
+
+// Set key and value
+
+{%&titulo%}GetKeys( data,key,value);
+
+}
+
+
+// Evento final de la peticion/respueta HTTP
+
+{%&titulo}AppHtmlEndCB({%&titulo%}_t *data)
+{
+// free Data
+if (data != NULL)
+   free(data);
+
+
+}
+
+/*
+ * Evento de proceso de la peticion ya recibida
+ * Exige una funcion externa que procese la peticion {%&titulo}AppHtml(connection,data);
+*/
+
+int {%&titulo}AppHtmlProcesoCB(MHD_Connection_t *connection,{%&titulo%}_t *data )
+{
+return {%&titulo}AppHtml(connection,data);
+//return spaServerResponseOK(connection
+//                , MHD_HTTP_OK
+//                , "de puta madre");
+
+}
+
+
+// Evento de inicio de la peticion
+
+int {%&titulo}AppHtmlInitCB(void (**appDataCB)()
+        , void (**appProcesoCB)()
+        , void (**appEndCB)()
+        , void (**dataCls)() )
+{
+
+// inicia and set Closure
+
+{%&titulo%}_t  *data=malloc(sizeof( {%&titulo%}_t ));
+memset(data,0,sizeof( {%&titulo%}_t ));
+*dataCls=(void *)data;
+
+// set CallBack Events
+
+  *appDataCB= (void (*)())   {%&titulo}AppHtmlDataCB;
+  *appProcesoCB=(void (*)()) {%&titulo}AppHtmlProcesoCB;
+  *appEndCB=(void (*)())     {%&titulo}AppHtmlEndCB;
+
+return(0);
+}
+
