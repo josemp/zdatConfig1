@@ -1,3 +1,4 @@
+/* Añado campo Titulo (primera con mayusculas) */
 /* Anado el campo numItems */
 /* Anado los descri tanto de char list objetos y objetos.item */
 /* Anado seccion firstObjeto */
@@ -12,6 +13,7 @@
 /* campos mustach
 
    &titulo : titulo de la tabla
+   &Titulo : titulo de la tabla primera en mayusculas
    &descriTab : descripcion de la tabla
    &numItems : numero de items del objeto
     
@@ -87,6 +89,8 @@ tablaInfo_t *tablaInfo= (tablaInfo_t *) closure;
 //printf("put <%s>\n",name);
 if (strcmp(name,"titulo")==0)
     {fprintf(file,"%s",tablaInfo->titulo);return(0);}
+if (strcmp(name,"Titulo")==0)
+    {fprintf(file,"%c%s",toupper(tablaInfo->titulo[0]),tablaInfo->titulo+1);return(0);}
 if (strcmp(name,"descriTab")==0)
     {fprintf(file,"%s",tablaInfo->tabla->descri);return(0);}
 if (strcmp(name,"numItems")==0)

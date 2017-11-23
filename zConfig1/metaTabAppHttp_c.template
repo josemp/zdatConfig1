@@ -16,7 +16,7 @@
 
 // Evento de datos de la peticion HTTP
 
-int {%&titulo%}AppHttpDataCB({%&titulo%}_t *data, char *key, char *value)
+int app{%&Titulo%}DataCB({%&titulo%}_t *data, char *key, char *value)
 {
 // appLoginData_t *data = (appLoginData_t *) dataCls;
 
@@ -29,7 +29,7 @@ int {%&titulo%}AppHttpDataCB({%&titulo%}_t *data, char *key, char *value)
 
 // Evento final de la peticion/respueta HTTP
 
-{%&titulo%}AppHttpEndCB({%&titulo%}_t *data)
+app{%&Titulo%}EndCB({%&titulo%}_t *data)
 {
 // free Data
 if (data != NULL)
@@ -43,7 +43,7 @@ if (data != NULL)
  * Exige una funcion externa que procese la peticion {%&titulo%}AppHttp(connection,data);
 */
 
-int {%&titulo%}AppHttpProcesoCB(MHD_Connection_t *connection,{%&titulo%}_t *data )
+int app{%&Titulo%}ProcesoCB(MHD_Connection_t *connection,{%&titulo%}_t *data )
 {
 return {%&titulo%}AppHttp(connection,data);
 //return spaServerResponseOK(connection
@@ -55,7 +55,7 @@ return {%&titulo%}AppHttp(connection,data);
 
 // Evento de inicio de la peticion
 
-int {%&titulo%}AppHttpInitCB(void (**appDataCB)()
+int app{%&Titulo%}InitCB(void (**appDataCB)()
         , void (**appProcesoCB)()
         , void (**appEndCB)()
         , void (**dataCls)() )
@@ -69,9 +69,9 @@ memset(data,0,sizeof( {%&titulo%}_t ));
 
 // set CallBack Events
 
-  *appDataCB= (void (*)())   {%&titulo%}AppHttpDataCB;
-  *appProcesoCB=(void (*)()) {%&titulo%}AppHttpProcesoCB;
-  *appEndCB=(void (*)())     {%&titulo%}AppHttpEndCB;
+  *appDataCB= (void (*)())   app{%&Titulo%}DataCB;
+  *appProcesoCB=(void (*)()) app{%&Titulo%}ProcesoCB;
+  *appEndCB=(void (*)())     app{%&Titulo%}EndCB;
 
 return(0);
 }

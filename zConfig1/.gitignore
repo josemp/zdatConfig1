@@ -3,7 +3,7 @@ html
 /*.o
 /*.a
 /zconfig1
-/template2include
+/template2Include
 /metaTabCargaMeta_c.h
 /metaTabGetKeys_c.h
 /metaTabTabla_h.h
@@ -11,4 +11,13 @@ html
 /metaTab_c.template
 /metaTab_h.template
 /metaTabAppHttp_c.h
-
+/cJSON_c.h
+/cJSON_h.h
+/makefileMain.h
+/makefileTest.h
+/metaTab2Json_c.h
+/metaTabLee_c.h
+/metaTabParseJson_c.h
+/metaTabTest_c.h
+/metaTab_h.h
+/mor
