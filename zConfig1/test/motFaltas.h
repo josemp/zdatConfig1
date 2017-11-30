@@ -30,3 +30,11 @@ typedef struct {
  int (*cbInit)(); 
 } motFaltas_t;
 
+/*  Estructura de la tabla List motFaltas  */ 
+
+typedef struct 
+{
+  int num;
+ motFaltas_t *data;
+
+} motFaltasLista_t;

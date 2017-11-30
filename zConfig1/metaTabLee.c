@@ -53,6 +53,7 @@ char *resto;
   
    *pun=0;
    label=buf;
+Conf1LimpiaBuf(label);
    pun++;
    tipo=pun;
    if (strlen(tipo)==0) break;

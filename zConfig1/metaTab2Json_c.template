@@ -82,7 +82,7 @@ fprintf(ou,"\n}");
 {%&titulo%}List2Json(FILE *ou,{%&titulo%}Lista_t *{%&titulo%})
 {
 int i;
-fprintf(ou,"[/n");
+fprintf(ou,"[\n");
 for (i=0;i<{%&titulo%}->num;i++)
 {
  if (i>0)
@@ -91,7 +91,7 @@ for (i=0;i<{%&titulo%}->num;i++)
 }
 
 
-fprintf(ou,"]/n");
+fprintf(ou,"]\n");
 }
 int {%&titulo%}List2JsonFile(char *nombreFichero,{%&titulo%}Lista_t *{%&titulo%})
 {
