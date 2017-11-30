@@ -60,3 +60,21 @@ if (key1!=NULL && strcmp(key,"{%&name%}")==0)
 }{%/object%}
 {%/tabla%}
 }// End function
+
+
+/****************************************************************/
+/*  Callback para añadir items a la lista                      */
+/****************************************************************/
+/* Los dos tienen que estar creados
+   Es importante el 'borrar' la estructura para que le
+   LLege limpio al siguiente item
+*/
+{%&titulo%}ListaAdd({%&titulo%}Lista_t *{%&titulo%}Lista,{%&titulo%}_t *{%&titulo%})
+{
+if ({%&titulo%}Lista->num==0) {%&titulo%}Lista->data=malloc(sizeof({%&titulo%}_t));
+else {%&titulo%}Lista->data=realloc({%&titulo%}Lista->data,({%&titulo%}Lista->num+1)*sizeof({%&titulo%}_t));
+{%&titulo%}Lista->data[{%&titulo%}Lista->num]=*{%&titulo%};
+{%&titulo%}Lista->num++;
+memset ({%&titulo%},0,sizeof({%&titulo%}_t));
+}
+

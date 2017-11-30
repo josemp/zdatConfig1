@@ -210,11 +210,17 @@ return(numItems);
 
 
 
+// este lee lista alternativo lo he creado para rellenar el {%&titulo%}Lista_t directamente
+//  {%&titulo%}Lista ha de estar creado y limpio
+{%&titulo%}LeeLista1(char *nombreFichero,{%&titulo%}Lista_t *{%&titulo%}Lista)
+{
+{%&titulo%}_t *{%&titulo%};
 
-
-
-
-
+int ret={%&titulo%}LeeLista(nombreFichero,&{%&titulo%});
+if (ret<0) return(ret);
+{%&titulo%}Lista->num=ret;
+{%&titulo%}Lista->data={%&titulo%};
+}
 
 
 

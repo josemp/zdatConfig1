@@ -4,7 +4,7 @@
 // Intefaz de programa para modulos 0 de zHttpServer
 // Este programa no se añade a la compilacion y no se testea
 
-// NECESITA una funcion externa : {%&titulo%}AppHttp(connection,data);
+// NECESITA una funcion externa : {%&titulo%}AppHttp(MHD_Connection_t *connection,{%&titulo%}_t *data )
 
 #include <stdio.h>
 #include <stdlib.h>

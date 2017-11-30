@@ -32,3 +32,11 @@ typedef struct {{%#tabla%} {%#char%}
  {%&name%}_t {%&name%}; {%/object%} {%/tabla%}
 } {%&titulo%}_t;
 
+/*  Estructura de la tabla List {%&titulo%}  */ 
+
+typedef struct 
+{
+  int num;
+ {%&titulo%}_t *data;
+
+} {%&titulo%}Lista_t;
