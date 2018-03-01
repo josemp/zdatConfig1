@@ -31,6 +31,7 @@ metaTab_t *leeMetaTab(char *file)
 char *resto;
  char buf[10000l];
  char hayItems=0;
+ strcpy(metaTab.descri,"");/* inicio esto porque creo que sale basurilla */
   
 
  FILE *in= fopen(file,"r");

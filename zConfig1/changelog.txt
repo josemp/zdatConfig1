@@ -1,5 +1,13 @@
+jue mar  1 07:29:17 CET 2018
+metaTabCargaMeta_c.template
+- Añado un getMetaTab_name que retorna un puntero a la tabla estatica del MetaTab_t
+  Inicialtmente la idea era clonar las funciones de metaTab.c utilizando la estructura estatica de metaTab, pero ahora pienso que sera mas comodo retornar un puntero a la tabla estatica.
+
+metaTabLee.c
+- Limpio el campo MetaTab_t.descri para 
+
 lun nov 20 13:37:53 CET 2017
-metaTab.c
+metaTab.c metaTabLee.c
 - Añado campo descri a metaTab_t (que se pondra en la tabla como #descripcionTab:xxxxx)
 - Añado en getMeta que si el label es objeto y labelItem es nulo, devuelve el itemMeta del objeto
 

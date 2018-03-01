@@ -42,6 +42,10 @@ metaTab_t metaTab_{%&titulo%}={
 "{%&titulo%}","{%&descriTab%}",{%&numItems%},metaTabItem_{%&titulo%} };
 
 
+metaTab_t *getMetaTab_{%&titulo%}()
+{
+ return getMeta(&metaTab_{%&titulo%});
+}
 
 int getMeta_{%&titulo%}(char *label,char *labelItem,itemMeta_t *itemMeta)
 {
