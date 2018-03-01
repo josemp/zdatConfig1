@@ -19,22 +19,22 @@
 #include <stdio.h>
 #include "metaTab.h"
 {%#tabla%}{%#char%}
-itemChar_t itemChar_{%&name%}={"{%&name%}","{%&descri%}",{%&lenChar%}};
+itemChar_t itemChar_{%&name%}_{%&titulo%}={"{%&name%}","{%&descri%}",{%&lenChar%}};
 {%/char%}{%#list%}
-itemLista_t itemLista_{%&name%}={"{%&name%}","{%&descri%}",{%&lenLista%},{%&lenChar%}};
+itemLista_t itemLista_{%&name%}_{%&titulo%}={"{%&name%}","{%&descri%}",{%&lenLista%},{%&lenChar%}};
 {%/list%}{%#callback%}
-itemCallBack_t itemCallBack_{%&name%}={"{%&name%}","{%&descri%}","{%&tipoCB%}"};
+itemCallBack_t itemCallBack_{%&name%}_{%&titulo%}={"{%&name%}","{%&descri%}","{%&tipoCB%}"};
 {%/callback%}{%#object%}
-itemChar_t itemCharObjeto_{%&name%}[{%&numItemsObjeto%}]={
+itemChar_t itemCharObjeto_{%&name%}_{%&titulo%}[{%&numItemsObjeto%}]={
 	{%#itemObjeto%}{%^firstObjeto%},{%/firstObjeto%}
 		{"{%&itemObjeto.name%}","{%&itemObjeto.descri%}",{%&itemObjeto.len%}}{%/itemObjeto%}};
-itemObjeto_t itemObjeto_{%&name%}={"{%&name%}","{%&descri%}",itemCharObjeto_{%&name%},{%&numItemsObjeto%}};
+itemObjeto_t itemObjeto_{%&name%}_{%&titulo%}={"{%&name%}","{%&descri%}",itemCharObjeto_{%&name%},{%&numItemsObjeto%}};
 {%/object%}{%/tabla%}
 metaTabItem_t metaTabItem_{%&titulo%}[]={
-{%#tabla%}{%^first%},{%/first%}{%#first%} {%/first%}{%#char%}{'C',(itemChar_t *) &itemChar_{%&name%}}
-{%/char%}{%#list%}{'L',(itemLista_t *) &itemLista_{%&name%}}
-{%/list%}{%#callback%}{'Y',(itemCallBack_t *)&itemCallBack_{%&name%}}
-{%/callback%}{%#object%}{'O',(itemObjeto_t *)&itemObjeto_{%&name%}} 
+{%#tabla%}{%^first%},{%/first%}{%#first%} {%/first%}{%#char%}{'C',(itemChar_t *) &itemChar_{%&name%}_{%&titulo%}}
+{%/char%}{%#list%}{'L',(itemLista_t *) &itemLista_{%&name%}_{%&titulo%}}
+{%/list%}{%#callback%}{'Y',(itemCallBack_t *)&itemCallBack_{%&name%}_{%&titulo%}}
+{%/callback%}{%#object%}{'O',(itemObjeto_t *)&itemObjeto_{%&name%}_{%&titulo%}} 
 {%/object%}{%/tabla%}
 };
 
