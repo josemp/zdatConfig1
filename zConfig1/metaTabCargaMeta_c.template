@@ -44,11 +44,7 @@ metaTab_t metaTab_{%&titulo%}={
 
 metaTab_t *getMetaTab_{%&titulo%}()
 {
- return getMeta(&metaTab_{%&titulo%});
+ return &metaTab_{%&titulo%};
 }
 
-int getMeta_{%&titulo%}(char *label,char *labelItem,itemMeta_t *itemMeta)
-{
- return getMeta(&metaTab_{%&titulo%},label,labelItem,itemMeta);
-}
 
